@@ -4,6 +4,9 @@
  */
 package packagee;
 
+import core.controllers.UserController;
+import core.controllers.utils.Response;
+import core.controllers.utils.Status;
 import core.controllers.utils.ViewUtils;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -416,20 +419,41 @@ public class NewJFrame11 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        String firstname = jTextField3.getText();
-        String lastname = jTextField4.getText();
-        long id = Long.parseLong(jTextField5.getText());
-        String spec = jComboBox1.getItemAt(jComboBox1.getSelectedIndex());
-        String licenseNumber = jTextField6.getText();
-        String assignedOffice = jTextField7.getText();
-        String username = jTextField8.getText();
-        String password = jTextField9.getText();
-        String comPassword = jTextField10.getText();
-        Specialty specialty = Specialty.valueOf(spec.replaceAll(" &", "").replaceAll(" ", "_"));
-        if (password.equals(comPassword)) {
-            users.add(new Doctor(id, username, firstname, lastname, password, specialty, licenseNumber, assignedOffice));
+        String specialtyDisplay = "";
+        if (jComboBox1.getSelectedIndex() > 0) {
+            specialtyDisplay = jComboBox1.getItemAt(jComboBox1.getSelectedIndex());
+        }
+
+        Response response = UserController.registerDoctor(
+                jTextField5.getText(),
+                jTextField3.getText(),
+                jTextField4.getText(),
+                jTextField8.getText(),
+                jTextField9.getText(),
+                jTextField10.getText(),
+                specialtyDisplay,
+                jTextField6.getText(),
+                jTextField7.getText()
+        );
+
+        ViewUtils.showResponseMessage(response);
+
+        if (response.getStatus() == Status.CREATED) {
+            clearDoctorRegisterFields();
         }
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void clearDoctorRegisterFields() {
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        jTextField6.setText("");
+        jTextField7.setText("");
+        jTextField8.setText("");
+        jTextField9.setText("");
+        jTextField10.setText("");
+        jComboBox1.setSelectedIndex(0);
+    }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         long idDoctor = Long.parseLong(jComboBox2.getItemAt(jComboBox2.getSelectedIndex()));
