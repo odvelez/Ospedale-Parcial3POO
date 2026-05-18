@@ -9,3 +9,7 @@ Parcial 3 — Programación Orientada a Objetos. Refactor del sistema hospitalar
 | Luis Villarreal      | 2040 |
 | Joel Trespalacios     | 2040 |
 | Oscar Velez          | 2040 |
+
+## Desarrollo
+
+Rama de entrega: `test`
