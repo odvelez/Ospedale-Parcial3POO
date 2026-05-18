@@ -1,5 +1,9 @@
 package core.models.storage;
 
+// @author odvelez
+// @author lvillarreale
+// @author joeltrespalaciosp
+
 import java.util.ArrayList;
 import core.models.entities.Appointment;
 import core.models.entities.Hospitalization;

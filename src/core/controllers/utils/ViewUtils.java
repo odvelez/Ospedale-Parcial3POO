@@ -1,5 +1,9 @@
 package core.controllers.utils;
 
+// @author odvelez
+// @author lvillarreale
+// @author joeltrespalaciosp
+
 import core.controllers.AuthController;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;

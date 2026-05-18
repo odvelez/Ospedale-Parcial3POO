@@ -1,5 +1,9 @@
 package core.models.storage;
 
+// @author odvelez
+// @author lvillarreale
+// @author joeltrespalaciosp
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -14,9 +18,6 @@ import core.models.entities.Patient;
 import core.models.entities.User;
 import core.models.enums.Specialty;
 
-/**
- * Loads users from json/users.json into Storage using org.json.
- */
 public class JsonLoader {
 
     public static void loadUsers() throws IOException {

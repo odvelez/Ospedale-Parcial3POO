@@ -1,13 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
- */
 package core.models.enums;
 
-/**
- *
- * @author edangulo
- */
+// @author odvelez
+// @author lvillarreale
+// @author joeltrespalaciosp
+
 public enum HospitalizationStatus {
 
     REQUESTED,

@@ -1,17 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package core.models.entities;
+
+// @author odvelez
+// @author lvillarreale
+// @author joeltrespalaciosp
 
 import core.models.enums.HospitalizationStatus;
 import core.models.enums.RoomType;
 import java.time.LocalDate;
 
-/**
- *
- * @author edangulo
- */
 public class Hospitalization {
     
     private final String id;

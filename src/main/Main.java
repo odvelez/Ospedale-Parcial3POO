@@ -1,8 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package main;
+
+// @author odvelez
+// @author lvillarreale
+// @author joeltrespalaciosp
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import core.models.storage.JsonLoader;
@@ -10,10 +10,6 @@ import java.io.IOException;
 import javax.swing.UIManager;
 import core.views.NewJFrame;
 
-/**
- *
- * @author oscar
- */
 public class Main {
 
     public static void main(String[] args) {

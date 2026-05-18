@@ -1,5 +1,9 @@
 package core.models.utils;
 
+// @author odvelez
+// @author lvillarreale
+// @author joeltrespalaciosp
+
 import core.models.storage.Storage;
 import java.time.LocalDateTime;
 import core.models.entities.Appointment;

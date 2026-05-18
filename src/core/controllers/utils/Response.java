@@ -1,5 +1,9 @@
 package core.controllers.utils;
 
+// @author odvelez
+// @author lvillarreale
+// @author joeltrespalaciosp
+
 import java.util.HashMap;
 
 public class Response {

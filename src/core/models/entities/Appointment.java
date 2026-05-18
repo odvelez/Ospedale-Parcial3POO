@@ -1,18 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package core.models.entities;
+
+// @author odvelez
+// @author lvillarreale
+// @author joeltrespalaciosp
 
 import core.models.enums.AppointmentStatus;
 import core.models.enums.Specialty;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-/**
- *
- * @author edangulo
- */
 public class Appointment {
     
     private final String id;
