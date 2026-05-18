@@ -69,6 +69,42 @@ public class AppointmentController {
         }
     }
 
+    public static Response getDoctorNameComboOptions() {
+        try {
+            ArrayList<String> options = new ArrayList<>();
+            options.add("Select one");
+            for (User user : ControllerRepositories.USERS.getUsers()) {
+                if (user instanceof Doctor) {
+                    Doctor doctor = (Doctor) user;
+                    options.add(doctor.getFirstname() + " " + doctor.getLastname());
+                }
+            }
+            HashMap<String, Object> data = new HashMap<>();
+            data.put("options", options);
+            return new Response("Doctor options loaded", Status.OK, data);
+        } catch (Exception ex) {
+            return new Response("Unexpected error", Status.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public static Response listPatientNameComboOptions() {
+        try {
+            ArrayList<String> options = new ArrayList<>();
+            options.add("Select one");
+            for (User user : ControllerRepositories.USERS.getUsers()) {
+                if (user instanceof Patient) {
+                    Patient patient = (Patient) user;
+                    options.add(patient.getFirstname() + " " + patient.getLastname());
+                }
+            }
+            HashMap<String, Object> data = new HashMap<>();
+            data.put("options", options);
+            return new Response("Patient options loaded", Status.OK, data);
+        } catch (Exception ex) {
+            return new Response("Unexpected error", Status.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     public static Response requestAppointment(long patientId, boolean byDoctor, String comboSelection,
             String date, String time, String reason, String appointmentTypeDisplay) {
         try {

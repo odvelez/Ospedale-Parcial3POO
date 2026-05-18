@@ -20,8 +20,9 @@ import java.util.ArrayList;
 
 /**
  *
- * @author jjlora
- * @author edangulo
+ * @author odvelez
+ * @author lvillarreale
+ * @author joeltrespalaciosp
  */
 public class NewJFrame11 extends javax.swing.JFrame {
 
@@ -467,12 +468,12 @@ public class NewJFrame11 extends javax.swing.JFrame {
     }
 
     private void btnOpenDoctorViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenDoctorViewActionPerformed
-        long doctorId = parseIdFromCombo((String) cmbDoctorImpersonation.getSelectedItem());
-        if (doctorId < 0) {
+        String doctorName = (String) cmbDoctorImpersonation.getSelectedItem();
+        if (doctorName == null || "Select one".equals(doctorName)) {
             ViewUtils.showResponseMessage(new Response("Select a valid doctor", Status.BAD_REQUEST));
             return;
         }
-        Doctor selectedDoctor = findDoctorById(doctorId);
+        Doctor selectedDoctor = findDoctorByName(doctorName);
         if (selectedDoctor == null) {
             ViewUtils.showResponseMessage(new Response("Doctor not found", Status.NOT_FOUND));
             return;
@@ -489,12 +490,12 @@ public class NewJFrame11 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnOpenPatientViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenPatientViewActionPerformed
-        long patientId = parseIdFromCombo((String) cmbPatientImpersonation.getSelectedItem());
-        if (patientId < 0) {
+        String patientName = (String) cmbPatientImpersonation.getSelectedItem();
+        if (patientName == null || "Select one".equals(patientName)) {
             ViewUtils.showResponseMessage(new Response("Select a valid patient", Status.BAD_REQUEST));
             return;
         }
-        Patient selectedPatient = findPatientById(patientId);
+        Patient selectedPatient = findPatientByName(patientName);
         if (selectedPatient == null) {
             ViewUtils.showResponseMessage(new Response("Patient not found", Status.NOT_FOUND));
             return;
@@ -507,8 +508,8 @@ public class NewJFrame11 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOpenPatientViewActionPerformed
 
     private void loadAdminImpersonationCombos() {
-        fillComboFromResponse(cmbDoctorImpersonation, AppointmentController.getDoctorComboOptions());
-        fillComboFromResponse(cmbPatientImpersonation, AppointmentController.listPatientComboOptions());
+        fillComboFromResponse(cmbDoctorImpersonation, AppointmentController.getDoctorNameComboOptions());
+        fillComboFromResponse(cmbPatientImpersonation, AppointmentController.listPatientNameComboOptions());
     }
 
     private void fillComboFromResponse(javax.swing.JComboBox<String> combo, Response response) {
@@ -549,32 +550,28 @@ public class NewJFrame11 extends javax.swing.JFrame {
         }
     }
 
-    private Doctor findDoctorById(long doctorId) {
-        for (User currentUser : users) {
+    private Doctor findDoctorByName(String fullName) {
+        for (User currentUser : Storage.getInstance().getUsers()) {
             if (currentUser instanceof Doctor) {
-                if (currentUser.getId() == doctorId) {
-                    return (Doctor) currentUser;
+                Doctor doctor = (Doctor) currentUser;
+                String name = doctor.getFirstname() + " " + doctor.getLastname();
+                if (name.equals(fullName)) {
+                    return doctor;
                 }
             }
-        }
-        User storedUser = Storage.getInstance().findUserById(doctorId);
-        if (storedUser instanceof Doctor) {
-            return (Doctor) storedUser;
         }
         return null;
     }
 
-    private Patient findPatientById(long patientId) {
-        for (User currentUser : users) {
+    private Patient findPatientByName(String fullName) {
+        for (User currentUser : Storage.getInstance().getUsers()) {
             if (currentUser instanceof Patient) {
-                if (currentUser.getId() == patientId) {
-                    return (Patient) currentUser;
+                Patient patient = (Patient) currentUser;
+                String name = patient.getFirstname() + " " + patient.getLastname();
+                if (name.equals(fullName)) {
+                    return patient;
                 }
             }
-        }
-        User storedUser = Storage.getInstance().findUserById(patientId);
-        if (storedUser instanceof Patient) {
-            return (Patient) storedUser;
         }
         return null;
     }

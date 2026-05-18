@@ -4,10 +4,6 @@
  */
 package core.views;
 
-// @author odvelez
-// @author lvillarreale
-// @author joeltrespalaciosp
-
 import core.controllers.AuthController;
 import core.controllers.UserController;
 import core.controllers.utils.Response;
@@ -23,6 +19,12 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ *
+ * @author odvelez
+ * @author lvillarreale
+ * @author joeltrespalaciosp
+ */
 public class NewJFrame extends javax.swing.JFrame {
 
     private int x, y;

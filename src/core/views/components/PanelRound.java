@@ -14,7 +14,9 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author jjlora
+ * @author odvelez
+ * @author lvillarreale
+ * @author joeltrespalaciosp
  */
 public class PanelRound extends JPanel {
 
