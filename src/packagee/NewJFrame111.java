@@ -4,6 +4,7 @@
  */
 package packagee;
 
+import core.controllers.utils.ViewUtils;
 import java.awt.Color;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -1155,9 +1156,7 @@ public class NewJFrame111 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        NewJFrame login = new NewJFrame();
-        this.setVisible(false);
-        login.setVisible(true);
+        ViewUtils.performLogout(this);
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed

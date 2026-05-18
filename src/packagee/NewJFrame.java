@@ -7,13 +7,13 @@ package packagee;
 import core.controllers.AuthController;
 import core.controllers.utils.Response;
 import core.controllers.utils.Status;
+import core.controllers.utils.ViewUtils;
 import core.models.storage.Storage;
 import java.awt.Color;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -424,26 +424,13 @@ public class NewJFrame extends javax.swing.JFrame {
         String password = jTextField2.getText();
 
         Response response = AuthController.login(username, password);
-        showResponseMessage(response);
+        ViewUtils.showResponseMessage(response);
 
         if (response.getStatus() == Status.OK) {
             openViewForRole(response);
             this.setVisible(false);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void showResponseMessage(Response response) {
-        if (response.getStatus() >= 500) {
-            JOptionPane.showMessageDialog(null, response.getMessage(),
-                    "Error " + response.getStatus(), JOptionPane.ERROR_MESSAGE);
-        } else if (response.getStatus() >= 400) {
-            JOptionPane.showMessageDialog(null, response.getMessage(),
-                    "Error " + response.getStatus(), JOptionPane.WARNING_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(null, response.getMessage(),
-                    "Response Message", JOptionPane.INFORMATION_MESSAGE);
-        }
-    }
 
     private void openViewForRole(Response response) {
         Storage storage = Storage.getInstance();

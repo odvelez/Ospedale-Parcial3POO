@@ -4,6 +4,7 @@
  */
 package packagee;
 
+import core.controllers.utils.ViewUtils;
 import java.awt.Color;
 import java.util.ArrayList;
 
@@ -443,10 +444,7 @@ public class NewJFrame11 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        
-        NewJFrame login = new NewJFrame();
-        this.setVisible(false);
-        login.setVisible(true);
+        ViewUtils.performLogout(this);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
