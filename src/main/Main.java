@@ -5,6 +5,8 @@
 package main;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import core.models.storage.JsonLoader;
+import java.io.IOException;
 import javax.swing.UIManager;
 import packagee.NewJFrame;
 
@@ -20,6 +22,12 @@ public class Main {
             UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
+        }
+        try {
+            JsonLoader.loadUsers();
+        } catch (IOException ex) {
+            System.err.println("Failed to load users.json: " + ex.getMessage());
+            ex.printStackTrace();
         }
         java.awt.EventQueue.invokeLater(() -> new NewJFrame().setVisible(true));
     }
