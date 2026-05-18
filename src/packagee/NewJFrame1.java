@@ -4,12 +4,16 @@
  */
 package packagee;
 
+import core.controllers.AppointmentController;
 import core.controllers.UserController;
 import core.controllers.utils.Response;
 import core.controllers.utils.Status;
 import core.controllers.utils.ViewUtils;
+import core.models.storage.Storage;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -36,7 +40,7 @@ public class NewJFrame1 extends javax.swing.JFrame {
         this.users = users;
         this.patient = patient;
         this.hospitalizations = hospitalizations;
-        this.appointments = appointments;
+        this.appointments = Storage.getInstance().getAppointments();
         if (user instanceof Administrator) {
             jButton7.setVisible(true);
         } else {
@@ -45,6 +49,8 @@ public class NewJFrame1 extends javax.swing.JFrame {
         this.setBackground(new Color(0, 0, 0, 0));
         this.setLocationRelativeTo(null);
         loadPatientProfile();
+        refreshAppointmentTable();
+        loadCancelAppointmentCombo();
     }
 
     /**
@@ -780,11 +786,16 @@ public class NewJFrame1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        String idAppointment = jComboBox4.getItemAt(jComboBox4.getSelectedIndex());
-        for(Appointment ap: this.appointments){
-            if (ap.getId().equals(idAppointment)) {
-                ap.setStatus(AppointmentStatus.CANCELED);
-            }
+        String appointmentId = (String) jComboBox4.getSelectedItem();
+        Response response = AppointmentController.cancelAppointment(
+                patient.getId(),
+                appointmentId,
+                jTextArea2.getText());
+        ViewUtils.showResponseMessage(response);
+        if (response.getStatus() == Status.OK) {
+            jTextArea2.setText("");
+            loadCancelAppointmentCombo();
+            refreshAppointmentTable();
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -841,56 +852,101 @@ public class NewJFrame1 extends javax.swing.JFrame {
         if (jRadioButton4.isSelected()) {
             jRadioButton4.setSelected(false);
         }
-
-        jComboBox5.removeAllItems();
-
-        jComboBox5.addItem("Select one");
-        for (Specialty spec : Specialty.values()) {
-            jComboBox5.addItem(spec.toString().replaceAll("_", " & "));
-        }
+        fillComboFromResponse(jComboBox5, AppointmentController.getSpecialtyComboOptions());
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
         if (jRadioButton3.isSelected()) {
             jRadioButton3.setSelected(false);
         }
-        jComboBox5.removeAllItems();
-
-        jComboBox5.addItem("Select one");
-        for (User doc : this.users) {
-            if (doc instanceof Doctor) {
-                jComboBox5.addItem(doc.getFirstname() + " " + doc.getLastname());
-            }
-        }
+        fillComboFromResponse(jComboBox5, AppointmentController.getDoctorComboOptions());
     }//GEN-LAST:event_jRadioButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String appointDate = jTextField12.getText();
-        LocalDate appointmentDate = LocalDate.of(Integer.parseInt(appointDate.substring(0, 4)), Integer.parseInt(appointDate.substring(5, 7)), Integer.parseInt(appointDate.substring(8)));
-        LocalTime appointmentHour = LocalTime.of(Integer.parseInt(jTextField13.getText().substring(0, 2)), Integer.parseInt(jTextField13.getText().substring(3)));
-        LocalDateTime Finally = LocalDateTime.of(appointmentDate, appointmentHour);
-        String appointmentReason = jTextArea4.getText();
-        long docId = Long.parseLong(jComboBox5.getItemAt(jComboBox5.getSelectedIndex()));
-        Doctor doctor = null;
-        for(User use:this.users){
-            if (use.getId() == docId) {
-                doctor = (Doctor) use;
-            }
+        boolean byDoctor = jRadioButton4.isSelected();
+        String comboSelection = (String) jComboBox5.getSelectedItem();
+        String appointmentType = (String) jComboBox1.getSelectedItem();
+        Response response = AppointmentController.requestAppointment(
+                patient.getId(),
+                byDoctor,
+                comboSelection,
+                jTextField12.getText(),
+                jTextField13.getText(),
+                jTextArea4.getText(),
+                appointmentType);
+        ViewUtils.showResponseMessage(response);
+        if (response.getStatus() == Status.CREATED) {
+            clearAppointmentRequestFields();
+            refreshAppointmentTable();
+            loadCancelAppointmentCombo();
+            this.appointments = Storage.getInstance().getAppointments();
         }
-        boolean appointmentType = (jComboBox1.getSelectedIndex() == 0 ? null : (jComboBox1.getSelectedIndex() == 2 ));
-        this.appointments.add(new Appointment(appointDate, patient, doctor, doctor.getSpecialty(), Finally, appointDate, appointmentType));
     }//GEN-LAST:event_jButton3ActionPerformed
 
-
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-        Patient p = (Patient) user;
+        refreshAppointmentTable();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void refreshAppointmentTable() {
+        Response response = AppointmentController.listPatientAppointments(patient.getId());
+        if (response.getStatus() != Status.OK || response.getData() == null) {
+            return;
+        }
+        Object rowsObject = response.getData().get("rows");
+        if (!(rowsObject instanceof List)) {
+            return;
+        }
+        List<?> rows = (List<?>) rowsObject;
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-        for (Appointment a : p.getAppointments()) {
-            model.addRow(new Object[]{a.getId(), a.getDatetime().toString(), a.getDoctor().getFirstname() + " " + a.getDoctor().getLastname(), a.getSpecialty().name(), a.isType() ? "In-person" : "Remote", a.getStatus().name()});
+        for (Object rowObject : rows) {
+            if (rowObject instanceof HashMap) {
+                HashMap<?, ?> row = (HashMap<?, ?>) rowObject;
+                model.addRow(new Object[]{
+                    row.get("id"),
+                    row.get("date"),
+                    row.get("doctor"),
+                    row.get("specialty"),
+                    row.get("type"),
+                    row.get("status")
+                });
+            }
         }
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }
+
+    private void loadCancelAppointmentCombo() {
+        fillComboFromResponse(jComboBox4, AppointmentController.listCancellableAppointmentIds(patient.getId()));
+    }
+
+    private void fillComboFromResponse(javax.swing.JComboBox<String> combo, Response response) {
+        combo.removeAllItems();
+        if (response.getStatus() != Status.OK || response.getData() == null) {
+            combo.addItem("Select one");
+            return;
+        }
+        Object optionsObject = response.getData().get("options");
+        if (optionsObject instanceof ArrayList) {
+            ArrayList<?> options = (ArrayList<?>) optionsObject;
+            for (Object option : options) {
+                if (option != null) {
+                    combo.addItem(option.toString());
+                }
+            }
+        } else {
+            combo.addItem("Select one");
+        }
+    }
+
+    private void clearAppointmentRequestFields() {
+        jTextField12.setText("");
+        jTextField13.setText("");
+        jTextArea4.setText("");
+        jComboBox1.setSelectedIndex(0);
+        jComboBox5.removeAllItems();
+        jComboBox5.addItem("Select one");
+        jRadioButton3.setSelected(false);
+        jRadioButton4.setSelected(false);
+    }
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         String hospitalizationReason = jTextArea3.getText();

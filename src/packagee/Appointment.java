@@ -23,6 +23,10 @@ public class Appointment {
     public void setReason(String reason) {
         this.reason = reason;
     }
+
+    public String getReason() {
+        return reason;
+    }
     private boolean type;
     private ArrayList<Prescription> prescriptions;
     private AppointmentStatus status;
@@ -77,6 +81,10 @@ public class Appointment {
 
     public LocalDateTime getDatetime() {
         return datetime;
+    }
+
+    public void setDatetime(LocalDateTime datetime) {
+        this.datetime = datetime;
     }
 
     public boolean isType() {

@@ -86,4 +86,16 @@ public class Storage {
         hospitalizations.add(hospitalization);
         return true;
     }
+
+    public Appointment findAppointmentById(String appointmentId) {
+        if (appointmentId == null) {
+            return null;
+        }
+        for (Appointment appointment : appointments) {
+            if (appointmentId.equals(appointment.getId())) {
+                return appointment;
+            }
+        }
+        return null;
+    }
 }
