@@ -8,11 +8,11 @@ import java.time.LocalDate;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import core.models.Administrator;
-import packagee.Doctor;
-import packagee.Patient;
-import packagee.Specialty;
-import packagee.User;
+import core.models.entities.Administrator;
+import core.models.entities.Doctor;
+import core.models.entities.Patient;
+import core.models.entities.User;
+import core.models.enums.Specialty;
 
 /**
  * Loads users from json/users.json into Storage using org.json.

@@ -8,7 +8,7 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import core.models.storage.JsonLoader;
 import java.io.IOException;
 import javax.swing.UIManager;
-import packagee.NewJFrame;
+import core.views.NewJFrame;
 
 /**
  *

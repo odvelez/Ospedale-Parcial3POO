@@ -3,7 +3,7 @@ package core.controllers.utils;
 import core.controllers.AuthController;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import packagee.NewJFrame;
+import core.views.NewJFrame;
 
 public class ViewUtils {
 

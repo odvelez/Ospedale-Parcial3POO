@@ -1,8 +1,8 @@
 package core.models.utils;
 
 import core.models.storage.Storage;
-import packagee.Appointment;
-import packagee.Hospitalization;
+import core.models.entities.Appointment;
+import core.models.entities.Hospitalization;
 public final class IdGenerator {
 
     private static final String APPOINTMENT_PREFIX = "A-";

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package packagee;
+package core.views;
 
 import core.controllers.AppointmentController;
 import core.controllers.HospitalizationController;
@@ -10,7 +10,11 @@ import core.controllers.UserController;
 import core.controllers.utils.Response;
 import core.controllers.utils.Status;
 import core.controllers.utils.ViewUtils;
-import core.models.Administrator;
+import core.models.entities.Administrator;
+import core.models.entities.Appointment;
+import core.models.entities.Hospitalization;
+import core.models.entities.Patient;
+import core.models.entities.User;
 import core.models.storage.Storage;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -61,8 +65,8 @@ public class NewJFrame1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelRound1 = new packagee.PanelRound();
-        panelRound2 = new packagee.PanelRound();
+        panelRound1 = new core.views.components.PanelRound();
+        panelRound2 = new core.views.components.PanelRound();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
@@ -1049,7 +1053,7 @@ public class NewJFrame1 extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
-    private packagee.PanelRound panelRound1;
-    private packagee.PanelRound panelRound2;
+    private core.views.components.PanelRound panelRound1;
+    private core.views.components.PanelRound panelRound2;
     // End of variables declaration//GEN-END:variables
 }

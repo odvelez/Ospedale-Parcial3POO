@@ -10,14 +10,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import packagee.Appointment;
-import packagee.AppointmentStatus;
-import packagee.Doctor;
-import packagee.Hospitalization;
-import packagee.HospitalizationStatus;
-import packagee.Patient;
-import packagee.RoomType;
-import packagee.User;
+import core.models.entities.Appointment;
+import core.models.entities.Doctor;
+import core.models.entities.Hospitalization;
+import core.models.entities.Patient;
+import core.models.entities.User;
+import core.models.enums.AppointmentStatus;
+import core.models.enums.HospitalizationStatus;
+import core.models.enums.RoomType;
 
 public class HospitalizationController {
 

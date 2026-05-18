@@ -2,9 +2,9 @@ package core.models.utils;
 
 import core.models.storage.Storage;
 import java.time.LocalDateTime;
-import packagee.Appointment;
-import packagee.AppointmentStatus;
-import packagee.Doctor;
+import core.models.entities.Appointment;
+import core.models.entities.Doctor;
+import core.models.enums.AppointmentStatus;
 
 public final class AvailabilityService {
 

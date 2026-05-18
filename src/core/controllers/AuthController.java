@@ -2,12 +2,12 @@ package core.controllers;
 
 import core.controllers.utils.Response;
 import core.controllers.utils.Status;
-import core.models.Administrator;
+import core.models.entities.Administrator;
+import core.models.entities.Doctor;
+import core.models.entities.Patient;
+import core.models.entities.User;
 import core.models.storage.Storage;
 import java.util.HashMap;
-import packagee.Doctor;
-import packagee.Patient;
-import packagee.User;
 
 public class AuthController {
 

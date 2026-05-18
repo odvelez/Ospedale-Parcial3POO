@@ -1,9 +1,9 @@
 package core.models.storage;
 
 import java.util.ArrayList;
-import packagee.Appointment;
-import packagee.Hospitalization;
-import packagee.User;
+import core.models.entities.Appointment;
+import core.models.entities.Hospitalization;
+import core.models.entities.User;
 
 public class Storage {
 
