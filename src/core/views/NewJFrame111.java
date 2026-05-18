@@ -1425,6 +1425,8 @@ public class NewJFrame111 extends javax.swing.JFrame {
     private void afterDoctorHospitalizationMutation() {
         this.hospitalizations = Storage.getInstance().getHospitalizations();
         loadDoctorHospitalizationCombos();
+        refreshDoctorHospitalizationTable();
+        tabDoctorMain.setSelectedIndex(0);
     }
 
     private void afterDoctorAppointmentMutation() {
@@ -1432,6 +1434,42 @@ public class NewJFrame111 extends javax.swing.JFrame {
         loadDoctorAppointmentCombos();
         boolean pendingOnly = rbDoctorAppointmentsPending.isSelected();
         refreshDoctorAppointmentsTable(pendingOnly);
+    }
+
+    private DefaultTableModel createDoctorAppointmentTableModel() {
+        return new DefaultTableModel(
+                new Object[0][0],
+                new String[]{"ID", "Date", "Patient", "Specialty", "Type", "Status"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+        };
+    }
+
+    private DefaultTableModel createDoctorHospitalizationTableModel() {
+        return new DefaultTableModel(
+                new Object[0][0],
+                new String[]{"ID", "Date", "Patient", "Room", "Status", "Reason"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+        };
+    }
+
+    private void populateTableFromRows(DefaultTableModel model, List<?> rows, String[] columnKeys) {
+        model.setRowCount(0);
+        for (Object rowObject : rows) {
+            if (rowObject instanceof HashMap) {
+                HashMap<?, ?> row = (HashMap<?, ?>) rowObject;
+                Object[] values = new Object[columnKeys.length];
+                for (int i = 0; i < columnKeys.length; i++) {
+                    values[i] = row.get(columnKeys[i]);
+                }
+                model.addRow(values);
+            }
+        }
     }
 
     private void refreshDoctorAppointmentsTable(boolean pendingOnly) {
@@ -1444,21 +1482,24 @@ public class NewJFrame111 extends javax.swing.JFrame {
             return;
         }
         List<?> rows = (List<?>) rowsObject;
-        DefaultTableModel model = (DefaultTableModel) tblDoctorAppointments.getModel();
-        model.setRowCount(0);
-        for (Object rowObject : rows) {
-            if (rowObject instanceof HashMap) {
-                HashMap<?, ?> row = (HashMap<?, ?>) rowObject;
-                model.addRow(new Object[]{
-                    row.get("id"),
-                    row.get("date"),
-                    row.get("patient"),
-                    row.get("specialty"),
-                    row.get("type"),
-                    row.get("status")
-                });
-            }
+        DefaultTableModel model = createDoctorAppointmentTableModel();
+        populateTableFromRows(model, rows, new String[]{"id", "date", "patient", "specialty", "type", "status"});
+        tblDoctorAppointments.setModel(model);
+    }
+
+    private void refreshDoctorHospitalizationTable() {
+        Response response = HospitalizationController.listDoctorHospitalizations(doctor.getId());
+        if (response.getStatus() != Status.OK || response.getData() == null) {
+            return;
         }
+        Object rowsObject = response.getData().get("rows");
+        if (!(rowsObject instanceof List)) {
+            return;
+        }
+        List<?> rows = (List<?>) rowsObject;
+        DefaultTableModel model = createDoctorHospitalizationTableModel();
+        populateTableFromRows(model, rows, new String[]{"id", "date", "patient", "roomType", "status", "reason"});
+        tblDoctorAppointments.setModel(model);
     }
 
     private void fillComboFromResponse(javax.swing.JComboBox<String> combo, Response response) {

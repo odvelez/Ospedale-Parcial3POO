@@ -302,6 +302,12 @@ public class HospitalizationController {
             } else {
                 row.put("doctor", "");
             }
+            if (hospitalization.getPatient() != null) {
+                row.put("patient", hospitalization.getPatient().getFirstname() + " "
+                        + hospitalization.getPatient().getLastname());
+            } else {
+                row.put("patient", "");
+            }
             row.put("roomType", hospitalization.getRoomType().name());
             row.put("status", hospitalization.getStatus().name());
             row.put("reason", hospitalization.getReason());

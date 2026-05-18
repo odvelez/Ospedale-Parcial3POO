@@ -54,6 +54,7 @@ public class NewJFrame1 extends javax.swing.JFrame {
         refreshAppointmentTable();
         loadCancelAppointmentCombo();
         loadHospitalizationCombos();
+        refreshAppointmentTable();
     }
 
     /**
@@ -893,6 +894,42 @@ public class NewJFrame1 extends javax.swing.JFrame {
         refreshAppointmentTable();
     }//GEN-LAST:event_btnRefreshAppointmentsActionPerformed
 
+    private DefaultTableModel createPatientAppointmentTableModel() {
+        return new DefaultTableModel(
+                new Object[0][0],
+                new String[]{"ID", "Date", "Doctor", "Specialty", "Type", "Status"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+        };
+    }
+
+    private DefaultTableModel createPatientHospitalizationTableModel() {
+        return new DefaultTableModel(
+                new Object[0][0],
+                new String[]{"ID", "Date", "Doctor", "Room", "Status", "Reason"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+        };
+    }
+
+    private void populateTableFromRows(DefaultTableModel model, List<?> rows, String[] columnKeys) {
+        model.setRowCount(0);
+        for (Object rowObject : rows) {
+            if (rowObject instanceof HashMap) {
+                HashMap<?, ?> row = (HashMap<?, ?>) rowObject;
+                Object[] values = new Object[columnKeys.length];
+                for (int i = 0; i < columnKeys.length; i++) {
+                    values[i] = row.get(columnKeys[i]);
+                }
+                model.addRow(values);
+            }
+        }
+    }
+
     private void refreshAppointmentTable() {
         Response response = AppointmentController.listPatientAppointments(patient.getId());
         if (response.getStatus() != Status.OK || response.getData() == null) {
@@ -903,21 +940,24 @@ public class NewJFrame1 extends javax.swing.JFrame {
             return;
         }
         List<?> rows = (List<?>) rowsObject;
-        DefaultTableModel model = (DefaultTableModel) tblPatientAppointments.getModel();
-        model.setRowCount(0);
-        for (Object rowObject : rows) {
-            if (rowObject instanceof HashMap) {
-                HashMap<?, ?> row = (HashMap<?, ?>) rowObject;
-                model.addRow(new Object[]{
-                    row.get("id"),
-                    row.get("date"),
-                    row.get("doctor"),
-                    row.get("specialty"),
-                    row.get("type"),
-                    row.get("status")
-                });
-            }
+        DefaultTableModel model = createPatientAppointmentTableModel();
+        populateTableFromRows(model, rows, new String[]{"id", "date", "doctor", "specialty", "type", "status"});
+        tblPatientAppointments.setModel(model);
+    }
+
+    private void refreshPatientHospitalizationTable() {
+        Response response = HospitalizationController.listPatientHospitalizations(patient.getId());
+        if (response.getStatus() != Status.OK || response.getData() == null) {
+            return;
         }
+        Object rowsObject = response.getData().get("rows");
+        if (!(rowsObject instanceof List)) {
+            return;
+        }
+        List<?> rows = (List<?>) rowsObject;
+        DefaultTableModel model = createPatientHospitalizationTableModel();
+        populateTableFromRows(model, rows, new String[]{"id", "date", "doctor", "roomType", "status", "reason"});
+        tblPatientAppointments.setModel(model);
     }
 
     private void loadCancelAppointmentCombo() {
@@ -968,6 +1008,8 @@ public class NewJFrame1 extends javax.swing.JFrame {
         if (response.getStatus() == Status.CREATED) {
             clearHospitalizationRequestFields();
             this.hospitalizations = Storage.getInstance().getHospitalizations();
+            refreshPatientHospitalizationTable();
+            tabPatientMain.setSelectedIndex(0);
         }
     }//GEN-LAST:event_btnRequestHospitalizationActionPerformed
 
