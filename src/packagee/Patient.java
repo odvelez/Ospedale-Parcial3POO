@@ -45,6 +45,26 @@ public class Patient extends User {
         this.hospitalization = hospitalization;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public LocalDate getBirthdate() {
+        return birthdate;
+    }
+
+    public boolean isGender() {
+        return gender;
+    }
+
+    public long getPhone() {
+        return phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
     public ArrayList<Appointment> getAppointments() {
         return appointments;
     }

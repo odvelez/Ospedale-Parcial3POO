@@ -4,8 +4,12 @@
  */
 package packagee;
 
+import core.controllers.UserController;
+import core.controllers.utils.Response;
+import core.controllers.utils.Status;
 import core.controllers.utils.ViewUtils;
 import java.awt.Color;
+import java.util.HashMap;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -40,6 +44,7 @@ public class NewJFrame1 extends javax.swing.JFrame {
         }
         this.setBackground(new Color(0, 0, 0, 0));
         this.setLocationRelativeTo(null);
+        loadPatientProfile();
     }
 
     /**
@@ -784,35 +789,43 @@ public class NewJFrame1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        String firstname = jTextField1.getText();
-        String lastname = jTextField2.getText();
-        boolean gender = (jComboBox6.getSelectedIndex() == 0 ? null : (jComboBox6.getSelectedIndex() == 1));
-        String birth = jTextField4.getText();
-        String address = jTextField8.getText();
-        long phone = Long.parseLong(jTextField7.getText());
-        String email = jTextField6.getText();
-        String username = jTextField11.getText();
-        String password = jTextField9.getText();
-        String comPassword = jTextField10.getText();
-        LocalDate birthdate = LocalDate.of(Integer.parseInt(birth.substring(0, 4)), Integer.parseInt(birth.substring(5, 7)), Integer.parseInt(birth.substring(8)));
-        if (comPassword.equals(password)) {
-            for (User user : this.users) {
-                if (user.getId() == this.user.getId() && user instanceof Patient) {
-                    Patient userTemp = (Patient) user;
-                    userTemp.setAddress(address);
-                    userTemp.setBirthdate(birthdate);
-                    userTemp.setEmail(email);
-                    userTemp.setFirstname(firstname);
-                    userTemp.setGender(gender);
-                    userTemp.setLastname(lastname);
-                    userTemp.setPassword(password);
-                    userTemp.setPhone(phone);
-                    userTemp.setUsername(username);
-                }
+        String gender = (String) jComboBox6.getSelectedItem();
+        Response response = UserController.updatePatient(
+                patient.getId(),
+                jTextField1.getText(),
+                jTextField2.getText(),
+                jTextField11.getText(),
+                jTextField9.getText(),
+                jTextField10.getText(),
+                jTextField6.getText(),
+                jTextField4.getText(),
+                jTextField7.getText(),
+                jTextField8.getText(),
+                gender);
+        ViewUtils.showResponseMessage(response);
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void loadPatientProfile() {
+        Response response = UserController.getPatientProfile(patient.getId());
+        if (response.getStatus() != Status.OK || response.getData() == null) {
+            return;
+        }
+        HashMap<String, Object> data = response.getData();
+        jTextField1.setText((String) data.get("firstname"));
+        jTextField2.setText((String) data.get("lastname"));
+        jTextField4.setText((String) data.get("birthdate"));
+        jTextField6.setText((String) data.get("email"));
+        jTextField7.setText((String) data.get("phone"));
+        jTextField8.setText((String) data.get("address"));
+        jTextField11.setText((String) data.get("username"));
+        String genderDisplay = (String) data.get("gender");
+        for (int i = 0; i < jComboBox6.getItemCount(); i++) {
+            if (jComboBox6.getItemAt(i).equals(genderDisplay)) {
+                jComboBox6.setSelectedIndex(i);
+                break;
             }
         }
-
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         ViewUtils.performLogout(this);

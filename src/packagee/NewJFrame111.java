@@ -4,8 +4,12 @@
  */
 package packagee;
 
+import core.controllers.UserController;
+import core.controllers.utils.Response;
+import core.controllers.utils.Status;
 import core.controllers.utils.ViewUtils;
 import java.awt.Color;
+import java.util.HashMap;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -38,6 +42,7 @@ public class NewJFrame111 extends javax.swing.JFrame {
             jButton11.setVisible(false);
         this.setBackground(new Color(0, 0, 0, 0));
         this.setLocationRelativeTo(null);
+        loadDoctorProfile();
     }
 
     /**
@@ -1130,30 +1135,39 @@ public class NewJFrame111 extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton4ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        String firstname = jTextField1.getText();
-        String lastname = jTextField2.getText();
-        String spec = jComboBox1.getItemAt(jComboBox1.getSelectedIndex());
-        String licenseNumber = jTextField6.getText();
-        String assignedOffice = jTextField8.getText();
-        String username = jTextField7.getText();
-        String password = jTextField9.getText();
-        String comPassword = jTextField10.getText();
-        Specialty specialty = Specialty.valueOf(spec.replaceAll(" &", "").replaceAll(" ", "_"));
-        if (password.equals(comPassword)) {
-            for(User doc: this.users){
-                if (doctor.getId() == doc.getId()) {
-                    doctor.setFirstname(firstname);
-                    doctor.setLastname(lastname);
-                    doctor.setPassword(password);
-                    doctor.setUsername(username);
-                    doctor.setAssignedOffice(assignedOffice);
-                    doctor.setLicenceNumber(licenseNumber);
-                    doctor.setSpecialty(specialty);
-                    
-                }
+        String specialtyDisplay = jComboBox1.getItemAt(jComboBox1.getSelectedIndex());
+        Response response = UserController.updateDoctor(
+                doctor.getId(),
+                jTextField1.getText(),
+                jTextField2.getText(),
+                jTextField8.getText(),
+                jTextField9.getText(),
+                jTextField10.getText(),
+                specialtyDisplay,
+                jTextField6.getText(),
+                jTextField7.getText());
+        ViewUtils.showResponseMessage(response);
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void loadDoctorProfile() {
+        Response response = UserController.getDoctorProfile(doctor.getId());
+        if (response.getStatus() != Status.OK || response.getData() == null) {
+            return;
+        }
+        HashMap<String, Object> data = response.getData();
+        jTextField1.setText((String) data.get("firstname"));
+        jTextField2.setText((String) data.get("lastname"));
+        jTextField6.setText((String) data.get("licenceNumber"));
+        jTextField7.setText((String) data.get("assignedOffice"));
+        jTextField8.setText((String) data.get("username"));
+        String specialtyDisplay = (String) data.get("specialty");
+        for (int i = 0; i < jComboBox1.getItemCount(); i++) {
+            if (jComboBox1.getItemAt(i).equals(specialtyDisplay)) {
+                jComboBox1.setSelectedIndex(i);
+                break;
             }
         }
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         ViewUtils.performLogout(this);
