@@ -4,3 +4,13 @@
 
 # Local IDE settings (machine-specific paths, not shared)
 /nbproject/private/
+
+debug-*.log
+
+lib/flatlaf-*.jar
+!lib/flatlaf-demo-3.6.jar
+
+/src/audit/
+
+.DS_Store
+Thumbs.db
