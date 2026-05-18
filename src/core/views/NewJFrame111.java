@@ -4,6 +4,8 @@
  */
 package core.views;
 
+import core.controllers.AppointmentController;
+import core.controllers.HospitalizationController;
 import core.controllers.UserController;
 import core.controllers.utils.Response;
 import core.controllers.utils.Status;
@@ -14,15 +16,11 @@ import core.models.entities.Doctor;
 import core.models.entities.Hospitalization;
 import core.models.entities.Patient;
 import core.models.entities.User;
-import core.models.enums.AppointmentStatus;
-import core.models.enums.HospitalizationStatus;
-import core.models.enums.RoomType;
 import core.models.storage.Storage;
 import java.awt.Color;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -52,7 +50,15 @@ public class NewJFrame111 extends javax.swing.JFrame {
             jButton11.setVisible(false);
         this.setBackground(new Color(0, 0, 0, 0));
         this.setLocationRelativeTo(null);
+        this.appointments = Storage.getInstance().getAppointments();
+        this.hospitalizations = Storage.getInstance().getHospitalizations();
         loadDoctorProfile();
+        fillComboFromResponse(jComboBox5, AppointmentController.listPatientComboOptions());
+        loadDoctorAppointmentCombos();
+        loadDoctorHospitalizationCombos();
+        jRadioButton3.setSelected(true);
+        jRadioButton5.setSelected(true);
+        refreshDoctorAppointmentsTable(false);
     }
 
     /**
@@ -1132,16 +1138,11 @@ public class NewJFrame111 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
-        // TODO add your handling code here:
-        jRadioButton3.setSelected(false);
-        Doctor d = (Doctor) user;
-        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-        model.setRowCount(0);
-        for (Appointment a : d.getAppointments()) {
-            if (a.getStatus().equals(AppointmentStatus.PENDING)) {
-                model.addRow(new Object[]{a.getId(), a.getDatetime().toString(), a.getPatient().getFirstname() + " " + a.getDoctor().getLastname(), a.getSpecialty().name(), a.isType() ? "In person" : "Virtual", a.getStatus().name()});
-            }
+        if (jRadioButton3.isSelected()) {
+            jRadioButton3.setSelected(false);
         }
+        jRadioButton4.setSelected(true);
+        refreshDoctorAppointmentsTable(true);
     }//GEN-LAST:event_jRadioButton4ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -1184,89 +1185,156 @@ public class NewJFrame111 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        NewJFrame11 admin = new NewJFrame11(user,users,hospitalizations, appointments);
+        ArrayList<User> currentUsers = Storage.getInstance().getUsers();
+        ArrayList<Hospitalization> currentHospitalizations = Storage.getInstance().getHospitalizations();
+        ArrayList<Appointment> currentAppointments = Storage.getInstance().getAppointments();
+        NewJFrame11 admin = new NewJFrame11(user, currentUsers, currentHospitalizations, currentAppointments);
         this.setVisible(false);
         admin.setVisible(true);
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        if (jRadioButton5.isSelected()) {
-            for(Hospitalization hosp : this.hospitalizations){
-                if (jComboBox6.getItemAt(jComboBox6.getSelectedIndex()) == hosp.getId()) {
-                    hosp.setStatus(HospitalizationStatus.CANCELED);
-                }
-            }
+        if (!jRadioButton5.isSelected()) {
+            ViewUtils.showResponseMessage(new Response("Select Requests mode to deny a hospitalization", Status.BAD_REQUEST));
+            return;
+        }
+        String hospitalizationId = (String) jComboBox6.getSelectedItem();
+        if (hospitalizationId == null || "Select one".equals(hospitalizationId)) {
+            ViewUtils.showResponseMessage(new Response("Select a hospitalization request", Status.BAD_REQUEST));
+            return;
+        }
+        Response response = HospitalizationController.denyHospitalization(doctor.getId(), hospitalizationId);
+        ViewUtils.showResponseMessage(response);
+        if (response.getStatus() == Status.OK) {
+            afterDoctorHospitalizationMutation();
         }
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        if (jRadioButton6.isSelected()) {
-            for(User user: this.users){
-                if (user instanceof Patient) {
-                    if (jComboBox8.getItemAt(jComboBox8.getSelectedIndex()).equals(user.getId())) {
-                        if (this.user instanceof Administrator) {
-                            String reason = jTextArea9.getText();
-                            String observations = jTextArea1.getText();
-                            String entDate = jTextField21.getText();
-                            LocalDate entryDate = LocalDate.of(Integer.parseInt(entDate.substring(0, 4)), Integer.parseInt(entDate.substring(5, 7)), Integer.parseInt(entDate.substring(8)));
-                            this.hospitalizations.add(new Hospitalization("asdfasdf", (Patient)user, this.doctor, LocalDate.MAX, reason, RoomType.IMC, observations, HospitalizationStatus.ONGOING));
-                        }
-                    }
-                }
+        if (jRadioButton5.isSelected()) {
+            String hospitalizationId = (String) jComboBox6.getSelectedItem();
+            if (hospitalizationId == null || "Select one".equals(hospitalizationId)) {
+                ViewUtils.showResponseMessage(new Response("Select a hospitalization request to approve", Status.BAD_REQUEST));
+                return;
             }
+            Response response = HospitalizationController.approveHospitalization(doctor.getId(), hospitalizationId);
+            ViewUtils.showResponseMessage(response);
+            if (response.getStatus() == Status.OK) {
+                afterDoctorHospitalizationMutation();
+            }
+            return;
+        }
+        if (!jRadioButton6.isSelected()) {
+            ViewUtils.showResponseMessage(new Response("Select Patient ID mode to create hospitalization from appointment", Status.BAD_REQUEST));
+            return;
+        }
+        String appointmentId = (String) jComboBox8.getSelectedItem();
+        if (appointmentId == null || "Select one".equals(appointmentId)) {
+            ViewUtils.showResponseMessage(new Response("Select a pending appointment", Status.BAD_REQUEST));
+            return;
+        }
+        String observations = jTextArea1.getText();
+        String durationText = jTextField22.getText();
+        if (durationText != null && !durationText.trim().isEmpty()) {
+            if (observations == null || observations.trim().isEmpty()) {
+                observations = "Estimated duration: " + durationText.trim();
+            } else {
+                observations = observations.trim() + " | Estimated duration: " + durationText.trim();
+            }
+        }
+        Response response = HospitalizationController.createFromAppointment(
+                doctor.getId(),
+                appointmentId,
+                jTextField21.getText(),
+                jTextArea9.getText(),
+                "STANDARD",
+                observations);
+        ViewUtils.showResponseMessage(response);
+        if (response.getStatus() == Status.CREATED) {
+            jTextArea9.setText("");
+            jTextField21.setText("");
+            jTextField22.setText("");
+            jTextArea1.setText("");
+            afterDoctorHospitalizationMutation();
+            afterDoctorAppointmentMutation();
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-        Patient p = null;
-        for (User u : this.users) {
-            if (u.getId() == Long.parseLong(jComboBox5.getItemAt(jComboBox5.getSelectedIndex()))) {
-                p = (Patient) u;
-            }
+        String patientSelection = (String) jComboBox5.getSelectedItem();
+        long patientId = parsePatientIdFromCombo(patientSelection);
+        if (patientId < 0) {
+            ViewUtils.showResponseMessage(new Response("Select a valid patient", Status.BAD_REQUEST));
+            return;
         }
-        
+        Response response = AppointmentController.listPatientAppointments(patientId);
+        if (response.getStatus() != Status.OK || response.getData() == null) {
+            ViewUtils.showResponseMessage(response);
+            return;
+        }
+        Object rowsObject = response.getData().get("rows");
+        if (!(rowsObject instanceof List)) {
+            return;
+        }
+        List<?> rows = (List<?>) rowsObject;
         DefaultTableModel model = (DefaultTableModel) jTable3.getModel();
         model.setRowCount(0);
-        for (Appointment a : p.getAppointments()) {
-            model.addRow(new Object[]{a.getId(), a.getDatetime().toString(), a.getDoctor().getFirstname() + " " + a.getDoctor().getLastname(), a.getSpecialty().name(), a.isType() ? "In-person" : "Remote", a.getStatus().name()});
+        for (Object rowObject : rows) {
+            if (rowObject instanceof HashMap) {
+                HashMap<?, ?> row = (HashMap<?, ?>) rowObject;
+                model.addRow(new Object[]{
+                    row.get("id"),
+                    row.get("date"),
+                    row.get("doctor"),
+                    row.get("specialty"),
+                    row.get("type"),
+                    row.get("status")
+                });
+            }
         }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-        // TODO add your handling code here:
-        jRadioButton4.setSelected(false);
-        Doctor d = (Doctor) user;
-        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-        model.setRowCount(0);
-        for (Appointment a : d.getAppointments()) {
-            model.addRow(new Object[]{a.getId(), a.getDatetime().toString(), a.getPatient().getFirstname() + " " + a.getDoctor().getLastname(), a.getSpecialty().name(), a.isType() ? "In-person" : "Remote", a.getStatus().name()});
+        if (jRadioButton4.isSelected()) {
+            jRadioButton4.setSelected(false);
         }
+        jRadioButton3.setSelected(true);
+        refreshDoctorAppointmentsTable(false);
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String idAppointment = jComboBox2.getItemAt(jComboBox2.getSelectedIndex());
-        for(Appointment apo: this.appointments){
-            if(apo.getId() == idAppointment){
-                apo.setStatus(AppointmentStatus.PENDING);
-            }
+        String appointmentId = (String) jComboBox2.getSelectedItem();
+        if (appointmentId == null || "Select one".equals(appointmentId)) {
+            ViewUtils.showResponseMessage(new Response("Select an appointment to accept", Status.BAD_REQUEST));
+            return;
+        }
+        Response response = AppointmentController.acceptAppointment(doctor.getId(), appointmentId);
+        ViewUtils.showResponseMessage(response);
+        if (response.getStatus() == Status.OK) {
+            afterDoctorAppointmentMutation();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        String idAppointment = jComboBox4.getItemAt(jComboBox4.getSelectedIndex());
-        String diagnosis = jTextArea5.getText();
-        String observations = jTextArea6.getText();
-        String recommendedTrea = jTextArea7.getText();
-        String followUp = jTextArea8.getText();
-        for(Appointment apo: this.appointments){
-            if(apo.getId() == idAppointment){
-                apo.setStatus(AppointmentStatus.CANCELED);
-                apo.setDiagnosis(diagnosis);
-                apo.setFollowUp(followUp);
-                apo.setRecommendedTreatment(recommendedTrea);
-                apo.setObservations(observations);
-            }
+        String appointmentId = (String) jComboBox4.getSelectedItem();
+        if (appointmentId == null || "Select one".equals(appointmentId)) {
+            ViewUtils.showResponseMessage(new Response("Select an appointment to complete", Status.BAD_REQUEST));
+            return;
+        }
+        Response response = AppointmentController.completeAppointment(
+                doctor.getId(),
+                appointmentId,
+                jTextArea5.getText(),
+                jTextArea6.getText(),
+                jTextArea7.getText(),
+                jTextArea8.getText());
+        ViewUtils.showResponseMessage(response);
+        if (response.getStatus() == Status.OK) {
+            jTextArea5.setText("");
+            jTextArea6.setText("");
+            jTextArea7.setText("");
+            jTextArea8.setText("");
+            afterDoctorAppointmentMutation();
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -1276,37 +1344,160 @@ public class NewJFrame111 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        
-        String appointmentId = jComboBox7.getItemAt(jComboBox7.getSelectedIndex());
+        String appointmentId = (String) jComboBox7.getSelectedItem();
+        if (appointmentId == null || "Select one".equals(appointmentId)) {
+            ViewUtils.showResponseMessage(new Response("Select an appointment to prescribe", Status.BAD_REQUEST));
+            return;
+        }
         String medicationName = jTextField24.getText();
-        double dose = Double.parseDouble(jTextField25.getText());
+        String doseText = jTextField25.getText();
         String administrationRoute = jTextField26.getText();
-        int tratementduration = Integer.parseInt(jTextField28.getText());
-        String aditionalIformation = jTextField29.getText();
-        int frecuency = Integer.parseInt(jTextField27.getText());
-        
-        model.addRow(new Object[]{appointmentId, medicationName, jTextField25.getText(), administrationRoute, "" + tratementduration, aditionalIformation, "" + frecuency});
-        for(Appointment apo: this.appointments){
-            if (apo.getId().equals(appointmentId)){
-                apo.addPrescription(new Prescription(apo, medicationName, dose, administrationRoute, tratementduration, aditionalIformation, frecuency));
-            }
+        String durationText = jTextField28.getText();
+        String additionalInformation = jTextField29.getText();
+        String frequencyText = jTextField27.getText();
+        double dose;
+        int treatmentDuration;
+        int frequency;
+        try {
+            dose = Double.parseDouble(doseText.trim());
+            treatmentDuration = Integer.parseInt(durationText.trim());
+            frequency = Integer.parseInt(frequencyText.trim());
+        } catch (NumberFormatException ex) {
+            ViewUtils.showResponseMessage(new Response("Dose, duration and frequency must be valid numbers", Status.BAD_REQUEST));
+            return;
+        }
+        Response response = AppointmentController.prescribeMedication(
+                doctor.getId(),
+                appointmentId,
+                medicationName,
+                dose,
+                administrationRoute,
+                treatmentDuration,
+                additionalInformation,
+                frequency);
+        ViewUtils.showResponseMessage(response);
+        if (response.getStatus() == Status.CREATED) {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.addRow(new Object[]{
+                appointmentId,
+                medicationName,
+                doseText,
+                administrationRoute,
+                Integer.toString(treatmentDuration),
+                additionalInformation,
+                Integer.toString(frequency)
+            });
+            this.appointments = Storage.getInstance().getAppointments();
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        String appointmentId = jComboBox3.getItemAt(jComboBox3.getSelectedIndex());
-        Appointment appointment = null;
-        for(Appointment apo: this.appointments){
-            if (apo.getId().equals(appointmentId)) {
-                appointment = apo;
+        String appointmentId = (String) jComboBox3.getSelectedItem();
+        if (appointmentId == null || "Select one".equals(appointmentId)) {
+            ViewUtils.showResponseMessage(new Response("Select an appointment to reschedule", Status.BAD_REQUEST));
+            return;
+        }
+        Response response = AppointmentController.rescheduleAppointment(
+                doctor.getId(),
+                appointmentId,
+                jTextField13.getText(),
+                jTextField14.getText());
+        ViewUtils.showResponseMessage(response);
+        if (response.getStatus() == Status.OK) {
+            jTextField13.setText("");
+            jTextField14.setText("");
+            afterDoctorAppointmentMutation();
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void loadDoctorAppointmentCombos() {
+        fillComboFromResponse(jComboBox2, AppointmentController.listDoctorAppointmentIds(doctor.getId(), "REQUESTED"));
+        fillComboFromResponse(jComboBox3, AppointmentController.listDoctorAppointmentIds(doctor.getId(), "RESCHEDULABLE"));
+        fillComboFromResponse(jComboBox4, AppointmentController.listDoctorAppointmentIds(doctor.getId(), "PENDING"));
+        fillComboFromResponse(jComboBox7, AppointmentController.listDoctorAppointmentIds(doctor.getId(), "PENDING"));
+    }
+
+    private void loadDoctorHospitalizationCombos() {
+        fillComboFromResponse(jComboBox6, HospitalizationController.listPendingHospitalizationIds(doctor.getId()));
+        fillComboFromResponse(jComboBox8, AppointmentController.listDoctorAppointmentIds(doctor.getId(), "PENDING"));
+    }
+
+    private void afterDoctorHospitalizationMutation() {
+        this.hospitalizations = Storage.getInstance().getHospitalizations();
+        loadDoctorHospitalizationCombos();
+    }
+
+    private void afterDoctorAppointmentMutation() {
+        this.appointments = Storage.getInstance().getAppointments();
+        loadDoctorAppointmentCombos();
+        boolean pendingOnly = jRadioButton4.isSelected();
+        refreshDoctorAppointmentsTable(pendingOnly);
+    }
+
+    private void refreshDoctorAppointmentsTable(boolean pendingOnly) {
+        Response response = AppointmentController.listDoctorAppointments(doctor.getId(), pendingOnly);
+        if (response.getStatus() != Status.OK || response.getData() == null) {
+            return;
+        }
+        Object rowsObject = response.getData().get("rows");
+        if (!(rowsObject instanceof List)) {
+            return;
+        }
+        List<?> rows = (List<?>) rowsObject;
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        model.setRowCount(0);
+        for (Object rowObject : rows) {
+            if (rowObject instanceof HashMap) {
+                HashMap<?, ?> row = (HashMap<?, ?>) rowObject;
+                model.addRow(new Object[]{
+                    row.get("id"),
+                    row.get("date"),
+                    row.get("patient"),
+                    row.get("specialty"),
+                    row.get("type"),
+                    row.get("status")
+                });
             }
         }
-        appointment.getDatetime().with(LocalTime.of(Integer.parseInt(jTextField13.getText().substring(0, 2)),Integer.parseInt(jTextField13.getText().substring(3))));
-        String reasonChangeTime = jTextField14.getText();
-        appointment.setReason(reasonChangeTime);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }
+
+    private void fillComboFromResponse(javax.swing.JComboBox<String> combo, Response response) {
+        combo.removeAllItems();
+        if (response.getStatus() != Status.OK || response.getData() == null) {
+            combo.addItem("Select one");
+            return;
+        }
+        Object optionsObject = response.getData().get("options");
+        if (optionsObject instanceof ArrayList) {
+            ArrayList<?> options = (ArrayList<?>) optionsObject;
+            for (Object option : options) {
+                if (option != null) {
+                    combo.addItem(option.toString());
+                }
+            }
+        } else {
+            combo.addItem("Select one");
+        }
+    }
+
+    private long parsePatientIdFromCombo(String selection) {
+        if (selection == null || "Select one".equals(selection)) {
+            return -1;
+        }
+        int separatorIndex = selection.indexOf(" - ");
+        if (separatorIndex > 0) {
+            try {
+                return Long.parseLong(selection.substring(0, separatorIndex).trim());
+            } catch (NumberFormatException ex) {
+                return -1;
+            }
+        }
+        try {
+            return Long.parseLong(selection.trim());
+        } catch (NumberFormatException ex) {
+            return -1;
+        }
+    }
 
 
 

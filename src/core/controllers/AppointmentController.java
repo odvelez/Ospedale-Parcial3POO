@@ -189,7 +189,8 @@ public class AppointmentController {
         }
     }
 
-    public static Response completeAppointment(long doctorId, String appointmentId) {
+    public static Response completeAppointment(long doctorId, String appointmentId, String diagnosis,
+            String observations, String recommendedTreatment, String followUp) {
         try {
             Doctor doctor = findDoctorById(doctorId);
             if (doctor == null) {
@@ -201,6 +202,18 @@ public class AppointmentController {
             }
             if (appointment.getStatus() != AppointmentStatus.PENDING) {
                 return new Response("Only pending appointments can be completed", Status.BAD_REQUEST);
+            }
+            if (diagnosis != null) {
+                appointment.setDiagnosis(diagnosis.trim());
+            }
+            if (observations != null) {
+                appointment.setObservations(observations.trim());
+            }
+            if (recommendedTreatment != null) {
+                appointment.setRecommendedTreatment(recommendedTreatment.trim());
+            }
+            if (followUp != null) {
+                appointment.setFollowUp(followUp.trim());
             }
             appointment.setStatus(AppointmentStatus.COMPLETED);
             return new Response("Appointment completed successfully", Status.OK);
@@ -318,18 +331,59 @@ public class AppointmentController {
             if (pendingOnly) {
                 ArrayList<Appointment> filtered = new ArrayList<>();
                 for (Appointment appointment : doctorAppointments) {
-                    if (appointment.getStatus() == AppointmentStatus.PENDING
-                            || appointment.getStatus() == AppointmentStatus.REQUESTED) {
+                    if (appointment.getStatus() == AppointmentStatus.PENDING) {
                         filtered.add(appointment);
                     }
                 }
                 doctorAppointments = filtered;
             }
             sortAppointmentsDescending(doctorAppointments);
-            ArrayList<HashMap<String, Object>> rows = serializeAppointmentRows(doctorAppointments);
+            ArrayList<HashMap<String, Object>> rows = serializeDoctorAppointmentRows(doctorAppointments);
             HashMap<String, Object> data = new HashMap<>();
             data.put("rows", rows);
             return new Response("Appointments loaded", Status.OK, data);
+        } catch (Exception ex) {
+            return new Response("Unexpected error", Status.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public static Response listPatientComboOptions() {
+        try {
+            ArrayList<String> options = new ArrayList<>();
+            options.add("Select one");
+            Storage storage = Storage.getInstance();
+            for (User user : storage.getUsers()) {
+                if (user instanceof Patient) {
+                    Patient patient = (Patient) user;
+                    options.add(patient.getId() + " - " + patient.getFirstname() + " " + patient.getLastname());
+                }
+            }
+            HashMap<String, Object> data = new HashMap<>();
+            data.put("options", options);
+            return new Response("Patient options loaded", Status.OK, data);
+        } catch (Exception ex) {
+            return new Response("Unexpected error", Status.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public static Response listDoctorAppointmentIds(long doctorId, String statusFilter) {
+        try {
+            Doctor doctor = findDoctorById(doctorId);
+            if (doctor == null) {
+                return new Response("Doctor not found", Status.NOT_FOUND);
+            }
+            ArrayList<String> options = new ArrayList<>();
+            options.add("Select one");
+            ArrayList<Appointment> doctorAppointments = collectAppointmentsForDoctor(doctorId);
+            sortAppointmentsDescending(doctorAppointments);
+            for (Appointment appointment : doctorAppointments) {
+                if (matchesDoctorAppointmentFilter(appointment, statusFilter)) {
+                    options.add(appointment.getId());
+                }
+            }
+            HashMap<String, Object> data = new HashMap<>();
+            data.put("options", options);
+            return new Response("Appointment options loaded", Status.OK, data);
         } catch (Exception ex) {
             return new Response("Unexpected error", Status.INTERNAL_SERVER_ERROR);
         }
@@ -390,28 +444,72 @@ public class AppointmentController {
         });
     }
 
+    private static boolean matchesDoctorAppointmentFilter(Appointment appointment, String statusFilter) {
+        if (statusFilter == null) {
+            return false;
+        }
+        if ("REQUESTED".equals(statusFilter)) {
+            return appointment.getStatus() == AppointmentStatus.REQUESTED;
+        }
+        if ("PENDING".equals(statusFilter)) {
+            return appointment.getStatus() == AppointmentStatus.PENDING;
+        }
+        if ("RESCHEDULABLE".equals(statusFilter)) {
+            if (appointment.getStatus() == AppointmentStatus.COMPLETED) {
+                return false;
+            }
+            if (appointment.getStatus() == AppointmentStatus.CANCELED) {
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
     private static ArrayList<HashMap<String, Object>> serializeAppointmentRows(ArrayList<Appointment> appointments) {
         ArrayList<HashMap<String, Object>> rows = new ArrayList<>();
         for (Appointment appointment : appointments) {
-            HashMap<String, Object> row = new HashMap<>();
-            row.put("id", appointment.getId());
-            row.put("date", appointment.getDatetime().toString());
-            if (appointment.getDoctor() != null) {
-                row.put("doctor", appointment.getDoctor().getFirstname() + " "
-                        + appointment.getDoctor().getLastname());
+            rows.add(buildAppointmentRow(appointment));
+        }
+        return rows;
+    }
+
+    private static ArrayList<HashMap<String, Object>> serializeDoctorAppointmentRows(ArrayList<Appointment> appointments) {
+        ArrayList<HashMap<String, Object>> rows = new ArrayList<>();
+        for (Appointment appointment : appointments) {
+            HashMap<String, Object> row = buildAppointmentRow(appointment);
+            if (appointment.getPatient() != null) {
+                row.put("patient", appointment.getPatient().getFirstname() + " "
+                        + appointment.getPatient().getLastname());
             } else {
-                row.put("doctor", "");
+                row.put("patient", "");
             }
-            row.put("specialty", specialtyToDisplay(appointment.getSpecialty()));
-            if (appointment.isType()) {
-                row.put("type", "In-person");
-            } else {
-                row.put("type", "Remote");
-            }
-            row.put("status", appointment.getStatus().name());
             rows.add(row);
         }
         return rows;
+    }
+
+    private static HashMap<String, Object> buildAppointmentRow(Appointment appointment) {
+        HashMap<String, Object> row = new HashMap<>();
+        row.put("id", appointment.getId());
+        row.put("date", appointment.getDatetime().toString());
+        if (appointment.getDoctor() != null) {
+            row.put("doctor", appointment.getDoctor().getFirstname() + " "
+                    + appointment.getDoctor().getLastname());
+        } else {
+            row.put("doctor", "");
+        }
+        row.put("specialty", specialtyToDisplay(appointment.getSpecialty()));
+        row.put("type", appointmentTypeLabel(appointment.isType()));
+        row.put("status", appointment.getStatus().name());
+        return row;
+    }
+
+    private static String appointmentTypeLabel(boolean inPerson) {
+        if (inPerson) {
+            return "In-person";
+        }
+        return "Remote";
     }
 
     private static Doctor findAvailableDoctorForSpecialty(Specialty specialty, LocalDateTime datetime) {

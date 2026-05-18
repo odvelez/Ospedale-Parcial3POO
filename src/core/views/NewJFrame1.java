@@ -846,7 +846,10 @@ public class NewJFrame1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        NewJFrame11 admin = new NewJFrame11(user, users,hospitalizations, appointments);
+        ArrayList<User> currentUsers = Storage.getInstance().getUsers();
+        ArrayList<Hospitalization> currentHospitalizations = Storage.getInstance().getHospitalizations();
+        ArrayList<Appointment> currentAppointments = Storage.getInstance().getAppointments();
+        NewJFrame11 admin = new NewJFrame11(user, currentUsers, currentHospitalizations, currentAppointments);
         this.setVisible(false);
         admin.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed

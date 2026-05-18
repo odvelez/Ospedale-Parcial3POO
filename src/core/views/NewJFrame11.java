@@ -4,6 +4,7 @@
  */
 package core.views;
 
+import core.controllers.AppointmentController;
 import core.controllers.UserController;
 import core.controllers.utils.Response;
 import core.controllers.utils.Status;
@@ -13,6 +14,7 @@ import core.models.entities.Doctor;
 import core.models.entities.Hospitalization;
 import core.models.entities.Patient;
 import core.models.entities.User;
+import core.models.storage.Storage;
 import java.awt.Color;
 import java.util.ArrayList;
 
@@ -36,6 +38,10 @@ public class NewJFrame11 extends javax.swing.JFrame {
         this.appointments = appointments;
         this.setBackground(new Color(0, 0, 0, 0));
         this.setLocationRelativeTo(null);
+        this.users = Storage.getInstance().getUsers();
+        this.appointments = Storage.getInstance().getAppointments();
+        this.hospitalizations = Storage.getInstance().getHospitalizations();
+        loadAdminImpersonationCombos();
     }
 
     /**
@@ -461,15 +467,21 @@ public class NewJFrame11 extends javax.swing.JFrame {
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        long idDoctor = Long.parseLong(jComboBox2.getItemAt(jComboBox2.getSelectedIndex()));
-        Doctor temp = null;
-        for(User use:this.users){
-            if(use.getId() == idDoctor)
-                temp =(Doctor) user;
+        long doctorId = parseIdFromCombo((String) jComboBox2.getSelectedItem());
+        if (doctorId < 0) {
+            ViewUtils.showResponseMessage(new Response("Select a valid doctor", Status.BAD_REQUEST));
+            return;
         }
-        NewJFrame111 doctor = new NewJFrame111(user,temp, users, hospitalizations,appointments);
+        Doctor selectedDoctor = findDoctorById(doctorId);
+        if (selectedDoctor == null) {
+            ViewUtils.showResponseMessage(new Response("Doctor not found", Status.NOT_FOUND));
+            return;
+        }
+        ArrayList<Appointment> currentAppointments = Storage.getInstance().getAppointments();
+        ArrayList<Hospitalization> currentHospitalizations = Storage.getInstance().getHospitalizations();
+        NewJFrame111 doctorView = new NewJFrame111(user, selectedDoctor, users, currentHospitalizations, currentAppointments);
         this.setVisible(false);
-        doctor.setVisible(true);
+        doctorView.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -477,16 +489,95 @@ public class NewJFrame11 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        long idPatient = Long.parseLong(jComboBox2.getItemAt(jComboBox2.getSelectedIndex()));
-        Patient temp = null;
-        for(User use:this.users){
-            if(use.getId() == idPatient)
-                temp =(Patient) user;
+        long patientId = parseIdFromCombo((String) jComboBox3.getSelectedItem());
+        if (patientId < 0) {
+            ViewUtils.showResponseMessage(new Response("Select a valid patient", Status.BAD_REQUEST));
+            return;
         }
-        NewJFrame1 patient = new NewJFrame1(user,temp,users,appointments,hospitalizations);
+        Patient selectedPatient = findPatientById(patientId);
+        if (selectedPatient == null) {
+            ViewUtils.showResponseMessage(new Response("Patient not found", Status.NOT_FOUND));
+            return;
+        }
+        ArrayList<Appointment> currentAppointments = Storage.getInstance().getAppointments();
+        ArrayList<Hospitalization> currentHospitalizations = Storage.getInstance().getHospitalizations();
+        NewJFrame1 patientView = new NewJFrame1(user, selectedPatient, users, currentAppointments, currentHospitalizations);
         this.setVisible(false);
-        patient.setVisible(true);
+        patientView.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void loadAdminImpersonationCombos() {
+        fillComboFromResponse(jComboBox2, AppointmentController.getDoctorComboOptions());
+        fillComboFromResponse(jComboBox3, AppointmentController.listPatientComboOptions());
+    }
+
+    private void fillComboFromResponse(javax.swing.JComboBox<String> combo, Response response) {
+        combo.removeAllItems();
+        if (response.getStatus() != Status.OK || response.getData() == null) {
+            combo.addItem("Select one");
+            return;
+        }
+        Object optionsObject = response.getData().get("options");
+        if (optionsObject instanceof ArrayList) {
+            ArrayList<?> options = (ArrayList<?>) optionsObject;
+            for (Object option : options) {
+                if (option != null) {
+                    combo.addItem(option.toString());
+                }
+            }
+        } else {
+            combo.addItem("Select one");
+        }
+    }
+
+    private long parseIdFromCombo(String selection) {
+        if (selection == null || "Select one".equals(selection)) {
+            return -1;
+        }
+        int separatorIndex = selection.indexOf(" - ");
+        if (separatorIndex > 0) {
+            try {
+                return Long.parseLong(selection.substring(0, separatorIndex).trim());
+            } catch (NumberFormatException ex) {
+                return -1;
+            }
+        }
+        try {
+            return Long.parseLong(selection.trim());
+        } catch (NumberFormatException ex) {
+            return -1;
+        }
+    }
+
+    private Doctor findDoctorById(long doctorId) {
+        for (User currentUser : users) {
+            if (currentUser instanceof Doctor) {
+                if (currentUser.getId() == doctorId) {
+                    return (Doctor) currentUser;
+                }
+            }
+        }
+        User storedUser = Storage.getInstance().findUserById(doctorId);
+        if (storedUser instanceof Doctor) {
+            return (Doctor) storedUser;
+        }
+        return null;
+    }
+
+    private Patient findPatientById(long patientId) {
+        for (User currentUser : users) {
+            if (currentUser instanceof Patient) {
+                if (currentUser.getId() == patientId) {
+                    return (Patient) currentUser;
+                }
+            }
+        }
+        User storedUser = Storage.getInstance().findUserById(patientId);
+        if (storedUser instanceof Patient) {
+            return (Patient) storedUser;
+        }
+        return null;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
