@@ -12,4 +12,5 @@ Parcial 3 — Programación Orientada a Objetos. Refactor del sistema hospitalar
 
 ## Desarrollo
 
-Rama de entrega: `test`
+Rama de desarrollo: `test`
+Rama de entrega final: `main`
