@@ -24,17 +24,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panelRound1" alignment="0" max="32767" attributes="0"/>
+          <Component id="pnlRoot" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panelRound1" alignment="0" max="32767" attributes="0"/>
+          <Component id="pnlRoot" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="core.views.components.PanelRound" name="panelRound1">
+    <Container class="core.views.components.PanelRound" name="pnlRoot">
       <Properties>
         <Property name="radius" type="int" value="50"/>
       </Properties>
@@ -44,8 +44,8 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="panelRound2" max="32767" attributes="0"/>
-                      <Component id="jTabbedPane1" max="32767" attributes="0"/>
+                      <Component id="pnlTitleBar" max="32767" attributes="0"/>
+                      <Component id="tabDoctorMain" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
@@ -54,21 +54,21 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="panelRound2" min="-2" max="-2" attributes="0"/>
+                  <Component id="pnlTitleBar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTabbedPane1" max="32767" attributes="0"/>
+                  <Component id="tabDoctorMain" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="core.views.components.PanelRound" name="panelRound2">
+        <Container class="core.views.components.PanelRound" name="pnlTitleBar">
           <Properties>
             <Property name="radius" type="int" value="50"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="panelRound2MouseDragged"/>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelRound2MousePressed"/>
+            <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="pnlTitleBarMouseDragged"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="pnlTitleBarMousePressed"/>
           </Events>
 
           <Layout>
@@ -76,11 +76,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAppTitle" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="jButton11" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnBackToAdmin" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnCloseWindow" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -88,15 +88,15 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                      <Component id="jButton1" alignment="3" max="32767" attributes="0"/>
-                      <Component id="jLabel1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="jButton11" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnCloseWindow" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblAppTitle" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="btnBackToAdmin" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="btnCloseWindow">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -111,10 +111,10 @@
                 <Property name="requestFocusEnabled" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCloseWindowActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel1">
+            <Component class="javax.swing.JLabel" name="lblAppTitle">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Yu Gothic UI" size="14" style="0"/>
@@ -122,7 +122,7 @@
                 <Property name="text" type="java.lang.String" value="DOCTOR VIEW"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton11">
+            <Component class="javax.swing.JButton" name="btnBackToAdmin">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -130,16 +130,16 @@
                 <Property name="text" type="java.lang.String" value="Back"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton11ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackToAdminActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+        <Container class="javax.swing.JTabbedPane" name="tabDoctorMain">
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="jPanel4">
+            <Container class="javax.swing.JPanel" name="pnlDoctorAppointmentsTab">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="Appointments visualization">
@@ -153,17 +153,17 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jButton12" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnLogout" min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                                      <Component id="jRadioButton3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rbDoctorAppointmentsTotal" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jRadioButton4" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rbDoctorAppointmentsPending" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
-                                      <Component id="jScrollPane3" min="-2" pref="1035" max="-2" attributes="0"/>
+                                      <Component id="scrlDoctorAppointments" min="-2" pref="1035" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -176,20 +176,20 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jRadioButton3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="rbDoctorAppointmentsTotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="rbDoctorAppointmentsPending" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jScrollPane3" min="-2" pref="504" max="-2" attributes="0"/>
+                          <Component id="scrlDoctorAppointments" min="-2" pref="504" max="-2" attributes="0"/>
                           <EmptySpace pref="15" max="32767" attributes="0"/>
-                          <Component id="jButton12" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnLogout" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton3">
+                <Component class="javax.swing.JRadioButton" name="rbDoctorAppointmentsTotal">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -197,17 +197,17 @@
                     <Property name="text" type="java.lang.String" value="Total appointments"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton3ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbDoctorAppointmentsTotalActionPerformed"/>
                   </Events>
                 </Component>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+                <Container class="javax.swing.JScrollPane" name="scrlDoctorAppointments">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="jTable2">
+                    <Component class="javax.swing.JTable" name="tblDoctorAppointments">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="6" rowCount="4">
@@ -223,7 +223,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton4">
+                <Component class="javax.swing.JRadioButton" name="rbDoctorAppointmentsPending">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -231,10 +231,10 @@
                     <Property name="text" type="java.lang.String" value="Pending appointments"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton4ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbDoctorAppointmentsPendingActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton12">
+                <Component class="javax.swing.JButton" name="btnLogout">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -242,12 +242,12 @@
                     <Property name="text" type="java.lang.String" value="Logout"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton12ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLogoutActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel5">
+            <Container class="javax.swing.JPanel" name="pnlPatientHistoryTab">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="History Appointments of a patient">
@@ -263,20 +263,20 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                  <Component id="jLabel38" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblSearchPatient" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jComboBox5" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cmbSearchPatient" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane4" min="-2" pref="1133" max="-2" attributes="0"/>
+                                  <Component id="scrlPatientAppointmentHistory" min="-2" pref="1133" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace pref="99" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="jButton8" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnSearchPatientAppointments" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="601" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -286,20 +286,20 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel38" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBox5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblSearchPatient" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbSearchPatient" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jScrollPane4" min="-2" max="-2" attributes="0"/>
+                          <Component id="scrlPatientAppointmentHistory" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                          <Component id="jButton8" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnSearchPatientAppointments" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="67" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JComboBox" name="jComboBox5">
+                <Component class="javax.swing.JComboBox" name="cmbSearchPatient">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -314,7 +314,7 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel38">
+                <Component class="javax.swing.JLabel" name="lblSearchPatient">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -322,14 +322,14 @@
                     <Property name="text" type="java.lang.String" value="Patient"/>
                   </Properties>
                 </Component>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane4">
+                <Container class="javax.swing.JScrollPane" name="scrlPatientAppointmentHistory">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="jTable3">
+                    <Component class="javax.swing.JTable" name="tblPatientAppointmentHistory">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="6" rowCount="4">
@@ -345,7 +345,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JButton" name="jButton8">
+                <Component class="javax.swing.JButton" name="btnSearchPatientAppointments">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -353,12 +353,12 @@
                     <Property name="text" type="java.lang.String" value="Search"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton8ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchPatientAppointmentsActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel3">
+            <Container class="javax.swing.JPanel" name="pnlDoctorProfileTab">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="Modify info">
@@ -374,50 +374,50 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="211" max="-2" attributes="0"/>
-                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblDoctorViewTitle" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jTextField1" min="-2" pref="109" max="-2" attributes="0"/>
+                                  <Component id="txtDoctorFirstname" min="-2" pref="109" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblDoctorFirstname" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jTextField2" min="-2" pref="109" max="-2" attributes="0"/>
+                                  <Component id="txtDoctorLastname" min="-2" pref="109" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblDoctorLastname" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cmbDoctorSpecialty" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="351" max="-2" attributes="0"/>
-                                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblDoctorSpecialty" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jTextField6" min="-2" pref="109" max="-2" attributes="0"/>
+                                  <Component id="txtDoctorLicence" min="-2" pref="109" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblDoctorLicence" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jTextField8" min="-2" pref="109" max="-2" attributes="0"/>
+                                  <Component id="txtDoctorUsername" min="-2" pref="109" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="558" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jTextField9" min="-2" pref="109" max="-2" attributes="0"/>
+                                      <Component id="txtDoctorPassword" min="-2" pref="109" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jTextField7" pref="109" max="32767" attributes="0"/>
-                                          <Component id="jLabel9" max="32767" attributes="0"/>
-                                          <Component id="jLabel10" max="32767" attributes="0"/>
+                                          <Component id="txtDoctorOffice" pref="109" max="32767" attributes="0"/>
+                                          <Component id="lblDoctorOffice" max="32767" attributes="0"/>
+                                          <Component id="lblDoctorUsername" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="521" max="-2" attributes="0"/>
-                                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblDoctorPassword" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="576" max="-2" attributes="0"/>
-                                  <Component id="jButton9" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnSaveDoctorProfile" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="561" max="-2" attributes="0"/>
-                                  <Component id="jTextField10" min="-2" pref="109" max="-2" attributes="0"/>
+                                  <Component id="txtDoctorPasswordConfirm" min="-2" pref="109" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace pref="269" max="32767" attributes="0"/>
@@ -429,41 +429,41 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblDoctorViewTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtDoctorFirstname" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblDoctorFirstname" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtDoctorLastname" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblDoctorLastname" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbDoctorSpecialty" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField8" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblDoctorSpecialty" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtDoctorLicence" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtDoctorUsername" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblDoctorLicence" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblDoctorOffice" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jTextField7" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDoctorOffice" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblDoctorUsername" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="jTextField9" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDoctorPassword" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblDoctorPassword" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jTextField10" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDoctorPasswordConfirm" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="jButton9" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnSaveDoctorProfile" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="161" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel2">
+                <Component class="javax.swing.JLabel" name="lblDoctorViewTitle">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -471,14 +471,14 @@
                     <Property name="text" type="java.lang.String" value="Firstname"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField1">
+                <Component class="javax.swing.JTextField" name="txtDoctorFirstname">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel3">
+                <Component class="javax.swing.JLabel" name="lblDoctorFirstname">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -486,14 +486,14 @@
                     <Property name="text" type="java.lang.String" value="Lastname"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField2">
+                <Component class="javax.swing.JTextField" name="txtDoctorLastname">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel5">
+                <Component class="javax.swing.JLabel" name="lblDoctorLastname">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -501,7 +501,7 @@
                     <Property name="text" type="java.lang.String" value="Specialty"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel7">
+                <Component class="javax.swing.JLabel" name="lblDoctorSpecialty">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -509,14 +509,14 @@
                     <Property name="text" type="java.lang.String" value="License Number"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField6">
+                <Component class="javax.swing.JTextField" name="txtDoctorLicence">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel8">
+                <Component class="javax.swing.JLabel" name="lblDoctorLicence">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -524,14 +524,14 @@
                     <Property name="text" type="java.lang.String" value="Assigned office"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField7">
+                <Component class="javax.swing.JTextField" name="txtDoctorOffice">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel9">
+                <Component class="javax.swing.JLabel" name="lblDoctorOffice">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -540,21 +540,21 @@
                     <Property name="text" type="java.lang.String" value="User"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField8">
+                <Component class="javax.swing.JTextField" name="txtDoctorUsername">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField9">
+                <Component class="javax.swing.JTextField" name="txtDoctorPassword">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel10">
+                <Component class="javax.swing.JLabel" name="lblDoctorUsername">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -563,7 +563,7 @@
                     <Property name="text" type="java.lang.String" value="Password"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel11">
+                <Component class="javax.swing.JLabel" name="lblDoctorPassword">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -571,14 +571,14 @@
                     <Property name="text" type="java.lang.String" value="Password confirmation"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField10">
+                <Component class="javax.swing.JTextField" name="txtDoctorPasswordConfirm">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox1">
+                <Component class="javax.swing.JComboBox" name="cmbDoctorSpecialty">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -604,7 +604,7 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton9">
+                <Component class="javax.swing.JButton" name="btnSaveDoctorProfile">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -612,12 +612,12 @@
                     <Property name="text" type="java.lang.String" value="Save"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton9ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveDoctorProfileActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel1">
+            <Container class="javax.swing.JPanel" name="pnlDoctorActionsTab">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="Request/Appointments">
@@ -638,49 +638,49 @@
                                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="1" attributes="0">
-                                                  <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="btnAcceptAppointment" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="1" attributes="0">
-                                                  <Component id="jComboBox2" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="cmbAcceptAppointmentId" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
-                                      <Component id="jLabel14" alignment="0" min="-2" pref="266" max="-2" attributes="0"/>
+                                      <Component id="lblAcceptAppointmentId" alignment="0" min="-2" pref="266" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="sepDoctorAccept" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                  <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblAcceptSection" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jLabel15" min="-2" pref="306" max="-2" attributes="0"/>
+                              <Component id="lblRescheduleSection" min="-2" pref="306" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel16" alignment="1" min="-2" pref="305" max="-2" attributes="0"/>
-                                  <Component id="jLabel17" alignment="1" min="-2" pref="304" max="-2" attributes="0"/>
-                                  <Component id="jLabel18" alignment="1" min="-2" pref="303" max="-2" attributes="0"/>
+                                  <Component id="lblRescheduleAppointmentId" alignment="1" min="-2" pref="305" max="-2" attributes="0"/>
+                                  <Component id="lblRescheduleTime" alignment="1" min="-2" pref="304" max="-2" attributes="0"/>
+                                  <Component id="lblRescheduleReason" alignment="1" min="-2" pref="303" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
-                                              <Component id="jComboBox3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cmbRescheduleAppointmentId" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
-                                              <Component id="jTextField13" min="-2" pref="109" max="-2" attributes="0"/>
+                                              <Component id="txtRescheduleTime" min="-2" pref="109" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
-                                              <Component id="jTextField14" min="-2" pref="109" max="-2" attributes="0"/>
+                                              <Component id="txtRescheduleReason" min="-2" pref="109" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
-                                              <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                                              <Component id="btnRescheduleAppointment" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
@@ -688,11 +688,11 @@
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jSeparator2" min="-2" max="-2" attributes="0"/>
+                          <Component id="sepDoctorComplete" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
-                                  <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCompleteAppointment" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
@@ -702,13 +702,13 @@
                                               <Group type="102" alignment="1" attributes="0">
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="1" attributes="0">
-                                                      <Component id="jLabel20" alignment="1" min="-2" pref="301" max="-2" attributes="0"/>
-                                                      <Component id="jLabel19" alignment="1" min="-2" pref="307" max="-2" attributes="0"/>
+                                                      <Component id="lblCompleteAppointmentId" alignment="1" min="-2" pref="301" max="-2" attributes="0"/>
+                                                      <Component id="lblCompleteSection" alignment="1" min="-2" pref="307" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
-                                                  <Component id="jComboBox4" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="cmbCompleteAppointmentId" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace min="0" pref="25" max="32767" attributes="0"/>
@@ -716,15 +716,15 @@
                                       <Group type="102" alignment="1" attributes="0">
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel21" alignment="1" min="-2" pref="301" max="-2" attributes="0"/>
-                                              <Component id="jLabel22" alignment="1" min="-2" pref="301" max="-2" attributes="0"/>
+                                              <Component id="lblDiagnosis" alignment="1" min="-2" pref="301" max="-2" attributes="0"/>
+                                              <Component id="lblCompleteObservations" alignment="1" min="-2" pref="301" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="jLabel24" max="32767" attributes="0"/>
-                                              <Component id="jLabel23" pref="292" max="32767" attributes="0"/>
+                                              <Component id="lblFollowUp" max="32767" attributes="0"/>
+                                              <Component id="lblRecommendedTreatment" pref="292" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
@@ -732,11 +732,11 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
                                                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                                                  <Component id="jScrollPane6" min="-2" pref="238" max="-2" attributes="0"/>
+                                                  <Component id="scrlDiagnosis" min="-2" pref="238" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                                  <Component id="jScrollPane7" min="-2" pref="238" max="-2" attributes="0"/>
+                                                  <Component id="scrlCompleteObservations" min="-2" pref="238" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -745,11 +745,11 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
                                                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                                                  <Component id="jScrollPane8" min="-2" pref="238" max="-2" attributes="0"/>
+                                                  <Component id="scrlRecommendedTreatment" min="-2" pref="238" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                                                  <Component id="jScrollPane9" min="-2" pref="238" max="-2" attributes="0"/>
+                                                  <Component id="scrlFollowUp" min="-2" pref="238" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -758,24 +758,24 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="jSeparator4" min="-2" max="-2" attributes="0"/>
+                          <Component id="sepDoctorHospitalization" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel25" max="32767" attributes="0"/>
-                                              <Component id="jLabel28" max="32767" attributes="0"/>
-                                              <Component id="jLabel29" max="32767" attributes="0"/>
-                                              <Component id="jLabel30" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="lblHospitalizationSection" max="32767" attributes="0"/>
+                                              <Component id="lblHospitalizationAdmissionDate" max="32767" attributes="0"/>
+                                              <Component id="lblHospitalizationEstimatedDuration" max="32767" attributes="0"/>
+                                              <Component id="lblHospitalizationObservations" alignment="1" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jTextField21" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
-                                              <Component id="jTextField22" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
+                                              <Component id="txtHospitalizationAdmissionDate" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
+                                              <Component id="txtHospitalizationEstimatedDuration" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
@@ -786,11 +786,11 @@
                                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="jButton13" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnDenyHospitalization" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="jButton6" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnApproveOrGenerateHospitalization" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="jScrollPane1" min="-2" pref="238" max="-2" attributes="0"/>
+                                      <Component id="scrlHospitalizationObservations" min="-2" pref="238" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace pref="56" max="32767" attributes="0"/>
                               </Group>
@@ -798,33 +798,33 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                          <Component id="jComboBox6" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cmbPendingHospitalizationId" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                          <Component id="jRadioButton5" min="-2" max="-2" attributes="0"/>
+                                          <Component id="rbHospitalizationRequests" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
-                                          <Component id="jRadioButton6" min="-2" pref="109" max="-2" attributes="0"/>
+                                          <Component id="rbHospitalizationFromAppointment" min="-2" pref="109" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <Component id="jComboBox8" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cmbHospitalizationAppointmentId" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel27" max="32767" attributes="0"/>
+                                  <Component id="lblHospitalizationReason" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jScrollPane10" min="-2" pref="238" max="-2" attributes="0"/>
+                                  <Component id="scrlHospitalizationReason" min="-2" pref="238" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -833,67 +833,67 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="sepDoctorAccept" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jSeparator2" max="32767" attributes="0"/>
+                              <Component id="sepDoctorComplete" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblCompleteSection" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                  <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblCompleteAppointmentId" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jComboBox4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cmbCompleteAppointmentId" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblDiagnosis" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane6" min="-2" pref="60" max="-2" attributes="0"/>
+                                  <Component id="scrlDiagnosis" min="-2" pref="60" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblCompleteObservations" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane7" min="-2" pref="60" max="-2" attributes="0"/>
+                                  <Component id="scrlCompleteObservations" min="-2" pref="60" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblRecommendedTreatment" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane8" min="-2" pref="60" max="-2" attributes="0"/>
+                                  <Component id="scrlRecommendedTreatment" min="-2" pref="60" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblFollowUp" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane9" min="-2" pref="60" max="-2" attributes="0"/>
+                                  <Component id="scrlFollowUp" min="-2" pref="60" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCompleteAppointment" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblAcceptSection" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblAcceptAppointmentId" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jComboBox2" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cmbAcceptAppointmentId" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                          <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnAcceptAppointment" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                          <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblRescheduleSection" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblRescheduleAppointmentId" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jComboBox3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cmbRescheduleAppointmentId" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblRescheduleTime" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jTextField13" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtRescheduleTime" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblRescheduleReason" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jTextField14" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtRescheduleReason" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                          <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnRescheduleAppointment" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace type="separate" max="32767" attributes="0"/>
@@ -902,46 +902,46 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                          <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblHospitalizationSection" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jRadioButton5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton6" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="rbHospitalizationRequests" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="rbHospitalizationFromAppointment" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jComboBox6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBox8" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbPendingHospitalizationId" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbHospitalizationAppointmentId" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblHospitalizationReason" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                          <Component id="jScrollPane10" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="scrlHospitalizationReason" min="-2" pref="60" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblHospitalizationAdmissionDate" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Component id="jTextField21" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtHospitalizationAdmissionDate" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblHospitalizationEstimatedDuration" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Component id="jTextField22" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtHospitalizationEstimatedDuration" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblHospitalizationObservations" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="85" max="-2" attributes="0"/>
+                          <Component id="scrlHospitalizationObservations" min="-2" pref="85" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jButton6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton13" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnApproveOrGenerateHospitalization" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnDenyHospitalization" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jSeparator4" alignment="1" max="32767" attributes="0"/>
+                      <Component id="sepDoctorHospitalization" alignment="1" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel14">
+                <Component class="javax.swing.JLabel" name="lblAcceptAppointmentId">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -950,7 +950,7 @@
                     <Property name="text" type="java.lang.String" value="Appointment ID"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel13">
+                <Component class="javax.swing.JLabel" name="lblAcceptSection">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -958,7 +958,7 @@
                     <Property name="text" type="java.lang.String" value="Accept medical appointment"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox2">
+                <Component class="javax.swing.JComboBox" name="cmbAcceptAppointmentId">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -973,12 +973,12 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JSeparator" name="jSeparator1">
+                <Component class="javax.swing.JSeparator" name="sepDoctorAccept">
                   <Properties>
                     <Property name="orientation" type="int" value="1"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton3">
+                <Component class="javax.swing.JButton" name="btnAcceptAppointment">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -986,10 +986,10 @@
                     <Property name="text" type="java.lang.String" value="Accept"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAcceptAppointmentActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel15">
+                <Component class="javax.swing.JLabel" name="lblRescheduleSection">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -998,7 +998,7 @@
                     <Property name="text" type="java.lang.String" value="Reschedule medical appointment"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel16">
+                <Component class="javax.swing.JLabel" name="lblRescheduleAppointmentId">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1007,7 +1007,7 @@
                     <Property name="text" type="java.lang.String" value="Appointment"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox3">
+                <Component class="javax.swing.JComboBox" name="cmbRescheduleAppointmentId">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1022,7 +1022,7 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton4">
+                <Component class="javax.swing.JButton" name="btnRescheduleAppointment">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1030,10 +1030,10 @@
                     <Property name="text" type="java.lang.String" value="Accept"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRescheduleAppointmentActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel17">
+                <Component class="javax.swing.JLabel" name="lblRescheduleTime">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1042,14 +1042,14 @@
                     <Property name="text" type="java.lang.String" value="New time appointment"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField13">
+                <Component class="javax.swing.JTextField" name="txtRescheduleTime">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel18">
+                <Component class="javax.swing.JLabel" name="lblRescheduleReason">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1058,19 +1058,19 @@
                     <Property name="text" type="java.lang.String" value="Reason for appointment"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField14">
+                <Component class="javax.swing.JTextField" name="txtRescheduleReason">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JSeparator" name="jSeparator2">
+                <Component class="javax.swing.JSeparator" name="sepDoctorComplete">
                   <Properties>
                     <Property name="orientation" type="int" value="1"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel19">
+                <Component class="javax.swing.JLabel" name="lblCompleteSection">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1079,7 +1079,7 @@
                     <Property name="text" type="java.lang.String" value="Complete medical appointment"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel20">
+                <Component class="javax.swing.JLabel" name="lblCompleteAppointmentId">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1088,7 +1088,7 @@
                     <Property name="text" type="java.lang.String" value="Appointment"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox4">
+                <Component class="javax.swing.JComboBox" name="cmbCompleteAppointmentId">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1103,7 +1103,7 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel21">
+                <Component class="javax.swing.JLabel" name="lblDiagnosis">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1112,7 +1112,7 @@
                     <Property name="text" type="java.lang.String" value="Diagnosis"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel22">
+                <Component class="javax.swing.JLabel" name="lblCompleteObservations">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1121,7 +1121,7 @@
                     <Property name="text" type="java.lang.String" value="Observations"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel23">
+                <Component class="javax.swing.JLabel" name="lblRecommendedTreatment">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1130,7 +1130,7 @@
                     <Property name="text" type="java.lang.String" value="Recommended treatment"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel24">
+                <Component class="javax.swing.JLabel" name="lblFollowUp">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1139,7 +1139,7 @@
                     <Property name="text" type="java.lang.String" value="Follow-up indication"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton5">
+                <Component class="javax.swing.JButton" name="btnCompleteAppointment">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1147,10 +1147,10 @@
                     <Property name="text" type="java.lang.String" value="Complete"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCompleteAppointmentActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel25">
+                <Component class="javax.swing.JLabel" name="lblHospitalizationSection">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1159,7 +1159,7 @@
                     <Property name="text" type="java.lang.String" value="Hospitalization"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel27">
+                <Component class="javax.swing.JLabel" name="lblHospitalizationReason">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1168,7 +1168,7 @@
                     <Property name="text" type="java.lang.String" value="Reason for hospitalization"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel28">
+                <Component class="javax.swing.JLabel" name="lblHospitalizationAdmissionDate">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1177,14 +1177,14 @@
                     <Property name="text" type="java.lang.String" value="Date of entry"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField21">
+                <Component class="javax.swing.JTextField" name="txtHospitalizationAdmissionDate">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel29">
+                <Component class="javax.swing.JLabel" name="lblHospitalizationEstimatedDuration">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1193,14 +1193,14 @@
                     <Property name="text" type="java.lang.String" value="Estimated duration"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField22">
+                <Component class="javax.swing.JTextField" name="txtHospitalizationEstimatedDuration">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel30">
+                <Component class="javax.swing.JLabel" name="lblHospitalizationObservations">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1209,14 +1209,14 @@
                     <Property name="text" type="java.lang.String" value="Observations"/>
                   </Properties>
                 </Component>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+                <Container class="javax.swing.JScrollPane" name="scrlHospitalizationObservations">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="jTextArea1">
+                    <Component class="javax.swing.JTextArea" name="txtHospitalizationObservations">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1227,7 +1227,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JButton" name="jButton6">
+                <Component class="javax.swing.JButton" name="btnApproveOrGenerateHospitalization">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1235,10 +1235,10 @@
                     <Property name="text" type="java.lang.String" value="Generate"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnApproveOrGenerateHospitalizationActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox6">
+                <Component class="javax.swing.JComboBox" name="cmbPendingHospitalizationId">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1253,7 +1253,7 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton5">
+                <Component class="javax.swing.JRadioButton" name="rbHospitalizationRequests">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1261,7 +1261,7 @@
                     <Property name="text" type="java.lang.String" value="Requests"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton6">
+                <Component class="javax.swing.JRadioButton" name="rbHospitalizationFromAppointment">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1269,14 +1269,14 @@
                     <Property name="text" type="java.lang.String" value="Patient ID"/>
                   </Properties>
                 </Component>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane6">
+                <Container class="javax.swing.JScrollPane" name="scrlDiagnosis">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="jTextArea5">
+                    <Component class="javax.swing.JTextArea" name="txtDiagnosis">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1287,14 +1287,14 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane7">
+                <Container class="javax.swing.JScrollPane" name="scrlCompleteObservations">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="jTextArea6">
+                    <Component class="javax.swing.JTextArea" name="txtCompleteObservations">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1305,14 +1305,14 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane8">
+                <Container class="javax.swing.JScrollPane" name="scrlRecommendedTreatment">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="jTextArea7">
+                    <Component class="javax.swing.JTextArea" name="txtRecommendedTreatment">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1323,14 +1323,14 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane9">
+                <Container class="javax.swing.JScrollPane" name="scrlFollowUp">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="jTextArea8">
+                    <Component class="javax.swing.JTextArea" name="txtFollowUp">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1341,12 +1341,12 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JSeparator" name="jSeparator4">
+                <Component class="javax.swing.JSeparator" name="sepDoctorHospitalization">
                   <Properties>
                     <Property name="orientation" type="int" value="1"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton13">
+                <Component class="javax.swing.JButton" name="btnDenyHospitalization">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1354,10 +1354,10 @@
                     <Property name="text" type="java.lang.String" value="Cancel"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton13ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDenyHospitalizationActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox8">
+                <Component class="javax.swing.JComboBox" name="cmbHospitalizationAppointmentId">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1372,14 +1372,14 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane10">
+                <Container class="javax.swing.JScrollPane" name="scrlHospitalizationReason">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="jTextArea9">
+                    <Component class="javax.swing.JTextArea" name="txtHospitalizationReason">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1392,7 +1392,7 @@
                 </Container>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel2">
+            <Container class="javax.swing.JPanel" name="pnlPrescriptionsTab">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="Prescribe medications">
@@ -1409,53 +1409,53 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jScrollPane2" min="-2" pref="1125" max="-2" attributes="0"/>
+                                      <Component id="scrlPrescriptionsTable" min="-2" pref="1125" max="-2" attributes="0"/>
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jLabel31" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="lblPrescriptionAppointmentId" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="jComboBox7" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="cmbPrescriptionAppointmentId" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                                                  <Component id="jLabel32" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="lblPrescriptionMedication" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jLabel36" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="lblPrescriptionAdditionalInfo" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="jTextField28" min="-2" pref="109" max="-2" attributes="0"/>
+                                                  <Component id="txtPrescriptionDuration" min="-2" pref="109" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Group type="102" attributes="0">
-                                                  <Component id="jLabel37" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="lblPrescriptionFrequency" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="jTextField29" min="-2" pref="109" max="-2" attributes="0"/>
+                                                  <Component id="txtPrescriptionAdditionalInfo" min="-2" pref="109" max="-2" attributes="0"/>
                                                   <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="jLabel35" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="lblPrescriptionDuration" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="jTextField27" min="-2" pref="109" max="-2" attributes="0"/>
+                                                  <Component id="txtPrescriptionFrequency" min="-2" pref="109" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" attributes="0">
-                                                  <Component id="jTextField24" min="-2" pref="109" max="-2" attributes="0"/>
+                                                  <Component id="txtPrescriptionMedication" min="-2" pref="109" max="-2" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="jLabel33" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="lblPrescriptionDose" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="jTextField25" min="-2" pref="109" max="-2" attributes="0"/>
+                                                  <Component id="txtPrescriptionDose" min="-2" pref="109" max="-2" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="jLabel34" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="lblPrescriptionRoute" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="jTextField26" min="-2" pref="109" max="-2" attributes="0"/>
+                                                  <Component id="txtPrescriptionRoute" min="-2" pref="109" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="jButton7" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnAddPrescription" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="583" max="-2" attributes="0"/>
-                                  <Component id="jButton10" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnClearPrescriptionsTable" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace pref="108" max="32767" attributes="0"/>
@@ -1467,36 +1467,36 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel31" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel32" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField24" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel33" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField25" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel34" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField26" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton7" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBox7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPrescriptionAppointmentId" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPrescriptionMedication" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtPrescriptionMedication" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPrescriptionDose" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtPrescriptionDose" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPrescriptionRoute" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtPrescriptionRoute" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnAddPrescription" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbPrescriptionAppointmentId" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel36" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField28" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel37" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField29" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel35" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField27" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPrescriptionAdditionalInfo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtPrescriptionDuration" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPrescriptionFrequency" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtPrescriptionAdditionalInfo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPrescriptionDuration" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtPrescriptionFrequency" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" min="-2" pref="340" max="-2" attributes="0"/>
+                          <Component id="scrlPrescriptionsTable" min="-2" pref="340" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                          <Component id="jButton10" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnClearPrescriptionsTable" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="64" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel31">
+                <Component class="javax.swing.JLabel" name="lblPrescriptionAppointmentId">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1504,7 +1504,7 @@
                     <Property name="text" type="java.lang.String" value="Appointment ID"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel32">
+                <Component class="javax.swing.JLabel" name="lblPrescriptionMedication">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1512,14 +1512,14 @@
                     <Property name="text" type="java.lang.String" value="Medication name"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField24">
+                <Component class="javax.swing.JTextField" name="txtPrescriptionMedication">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel33">
+                <Component class="javax.swing.JLabel" name="lblPrescriptionDose">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1527,14 +1527,14 @@
                     <Property name="text" type="java.lang.String" value="Dose"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField25">
+                <Component class="javax.swing.JTextField" name="txtPrescriptionDose">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel34">
+                <Component class="javax.swing.JLabel" name="lblPrescriptionRoute">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1542,14 +1542,14 @@
                     <Property name="text" type="java.lang.String" value="Administration route"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField26">
+                <Component class="javax.swing.JTextField" name="txtPrescriptionRoute">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel35">
+                <Component class="javax.swing.JLabel" name="lblPrescriptionDuration">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1557,14 +1557,14 @@
                     <Property name="text" type="java.lang.String" value="Frecuency"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField27">
+                <Component class="javax.swing.JTextField" name="txtPrescriptionFrequency">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel36">
+                <Component class="javax.swing.JLabel" name="lblPrescriptionAdditionalInfo">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1572,14 +1572,14 @@
                     <Property name="text" type="java.lang.String" value="Treatment duration"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField28">
+                <Component class="javax.swing.JTextField" name="txtPrescriptionDuration">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel37">
+                <Component class="javax.swing.JLabel" name="lblPrescriptionFrequency">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1587,21 +1587,21 @@
                     <Property name="text" type="java.lang.String" value="Additional instructions"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField29">
+                <Component class="javax.swing.JTextField" name="txtPrescriptionAdditionalInfo">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+                <Container class="javax.swing.JScrollPane" name="scrlPrescriptionsTable">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="jTable1">
+                    <Component class="javax.swing.JTable" name="tblPrescriptions">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="7" rowCount="4">
@@ -1618,7 +1618,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JButton" name="jButton7">
+                <Component class="javax.swing.JButton" name="btnAddPrescription">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1626,10 +1626,10 @@
                     <Property name="text" type="java.lang.String" value="Add"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddPrescriptionActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton10">
+                <Component class="javax.swing.JButton" name="btnClearPrescriptionsTable">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -1637,10 +1637,10 @@
                     <Property name="text" type="java.lang.String" value="Prescribe"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton10ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClearPrescriptionsTableActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox7">
+                <Component class="javax.swing.JComboBox" name="cmbPrescriptionAppointmentId">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>

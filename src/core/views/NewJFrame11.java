@@ -53,398 +53,398 @@ public class NewJFrame11 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelRound1 = new core.views.components.PanelRound();
-        panelRound2 = new core.views.components.PanelRound();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        panelRound3 = new core.views.components.PanelRound();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton9 = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jSeparator2 = new javax.swing.JSeparator();
-        jButton10 = new javax.swing.JButton();
+        pnlRoot = new core.views.components.PanelRound();
+        pnlTitleBar = new core.views.components.PanelRound();
+        btnCloseWindow = new javax.swing.JButton();
+        lblAdminTitle = new javax.swing.JLabel();
+        pnlAdminContent = new core.views.components.PanelRound();
+        btnOpenDoctorView = new javax.swing.JButton();
+        btnOpenPatientView = new javax.swing.JButton();
+        lblDoctorFirstname = new javax.swing.JLabel();
+        txtDoctorFirstname = new javax.swing.JTextField();
+        lblDoctorLastname = new javax.swing.JLabel();
+        txtDoctorLastname = new javax.swing.JTextField();
+        lblDoctorId = new javax.swing.JLabel();
+        txtDoctorId = new javax.swing.JTextField();
+        lblDoctorSpecialty = new javax.swing.JLabel();
+        lblDoctorLicence = new javax.swing.JLabel();
+        txtDoctorLicence = new javax.swing.JTextField();
+        lblDoctorOffice = new javax.swing.JLabel();
+        txtDoctorOffice = new javax.swing.JTextField();
+        lblDoctorUsername = new javax.swing.JLabel();
+        txtDoctorUsername = new javax.swing.JTextField();
+        lblDoctorPassword = new javax.swing.JLabel();
+        txtDoctorPassword = new javax.swing.JTextField();
+        lblDoctorPasswordConfirm = new javax.swing.JLabel();
+        txtDoctorPasswordConfirm = new javax.swing.JTextField();
+        cmbDoctorSpecialty = new javax.swing.JComboBox<>();
+        btnRegisterDoctor = new javax.swing.JButton();
+        sepAdminMain = new javax.swing.JSeparator();
+        cmbDoctorImpersonation = new javax.swing.JComboBox<>();
+        lblDoctorImpersonation = new javax.swing.JLabel();
+        lblPatientImpersonation = new javax.swing.JLabel();
+        cmbPatientImpersonation = new javax.swing.JComboBox<>();
+        sepAdminSide = new javax.swing.JSeparator();
+        btnLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        panelRound1.setRadius(50);
+        pnlRoot.setRadius(50);
 
-        panelRound2.setRadius(50);
-        panelRound2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        pnlTitleBar.setRadius(50);
+        pnlTitleBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                panelRound2MouseDragged(evt);
+                pnlTitleBarMouseDragged(evt);
             }
         });
-        panelRound2.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnlTitleBar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                panelRound2MousePressed(evt);
+                pnlTitleBarMousePressed(evt);
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jButton1.setText("X");
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton1.setFocusable(false);
-        jButton1.setRequestFocusEnabled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCloseWindow.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        btnCloseWindow.setText("X");
+        btnCloseWindow.setBorderPainted(false);
+        btnCloseWindow.setContentAreaFilled(false);
+        btnCloseWindow.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCloseWindow.setFocusable(false);
+        btnCloseWindow.setRequestFocusEnabled(false);
+        btnCloseWindow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCloseWindowActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-        jLabel1.setText("ADMIN VIEW");
+        lblAdminTitle.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        lblAdminTitle.setText("ADMIN VIEW");
 
-        javax.swing.GroupLayout panelRound2Layout = new javax.swing.GroupLayout(panelRound2);
-        panelRound2.setLayout(panelRound2Layout);
-        panelRound2Layout.setHorizontalGroup(
-            panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlTitleBarLayout = new javax.swing.GroupLayout(pnlTitleBar);
+        pnlTitleBar.setLayout(pnlTitleBarLayout);
+        pnlTitleBarLayout.setHorizontalGroup(
+            pnlTitleBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTitleBarLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel1)
+                .addComponent(lblAdminTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnCloseWindow)
                 .addGap(19, 19, 19))
         );
-        panelRound2Layout.setVerticalGroup(
-            panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1))
+        pnlTitleBarLayout.setVerticalGroup(
+            pnlTitleBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTitleBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(btnCloseWindow, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblAdminTitle))
         );
 
-        jButton2.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        jButton2.setText("DOCTOR VIEW");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnOpenDoctorView.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        btnOpenDoctorView.setText("DOCTOR VIEW");
+        btnOpenDoctorView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnOpenDoctorViewActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        jButton3.setText("PATIENT VIEW");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnOpenPatientView.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        btnOpenPatientView.setText("PATIENT VIEW");
+        btnOpenPatientView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnOpenPatientViewActionPerformed(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jLabel4.setText("Firstname");
+        lblDoctorFirstname.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        lblDoctorFirstname.setText("Firstname");
 
-        jTextField3.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        txtDoctorFirstname.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jLabel5.setText("Lastname");
+        lblDoctorLastname.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        lblDoctorLastname.setText("Lastname");
 
-        jTextField4.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        txtDoctorLastname.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jLabel6.setText("ID");
+        lblDoctorId.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        lblDoctorId.setText("ID");
 
-        jTextField5.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        txtDoctorId.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
 
-        jLabel7.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jLabel7.setText("Specialty");
+        lblDoctorSpecialty.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        lblDoctorSpecialty.setText("Specialty");
 
-        jLabel8.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jLabel8.setText("License Number");
+        lblDoctorLicence.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        lblDoctorLicence.setText("License Number");
 
-        jTextField6.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        txtDoctorLicence.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
 
-        jLabel9.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jLabel9.setText("Assigned office");
+        lblDoctorOffice.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        lblDoctorOffice.setText("Assigned office");
 
-        jTextField7.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        txtDoctorOffice.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
 
-        jLabel10.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jLabel10.setText("User");
+        lblDoctorUsername.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        lblDoctorUsername.setText("User");
 
-        jTextField8.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        txtDoctorUsername.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
 
-        jLabel11.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jLabel11.setText("Password");
+        lblDoctorPassword.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        lblDoctorPassword.setText("Password");
 
-        jTextField9.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        txtDoctorPassword.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
 
-        jLabel12.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jLabel12.setText("Password confirmation");
+        lblDoctorPasswordConfirm.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        lblDoctorPasswordConfirm.setText("Password confirmation");
 
-        jTextField10.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        txtDoctorPasswordConfirm.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
 
-        jComboBox1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select one", "General Medicine", "Cardiology", "Pediatrics", "Neurology", "Traumatology & Orthopedics", "Gynecology & Obstetrics", "Dermatology", "Psychiatry", "Oncology", "Ophthalmology", "Internal Medicine" }));
+        cmbDoctorSpecialty.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        cmbDoctorSpecialty.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select one", "General Medicine", "Cardiology", "Pediatrics", "Neurology", "Traumatology & Orthopedics", "Gynecology & Obstetrics", "Dermatology", "Psychiatry", "Oncology", "Ophthalmology", "Internal Medicine" }));
 
-        jButton9.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jButton9.setText("Save");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        btnRegisterDoctor.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        btnRegisterDoctor.setText("Save");
+        btnRegisterDoctor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                btnRegisterDoctorActionPerformed(evt);
             }
         });
 
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        sepAdminMain.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jComboBox2.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select one" }));
+        cmbDoctorImpersonation.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        cmbDoctorImpersonation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select one" }));
 
-        jLabel13.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jLabel13.setText("Doctor");
+        lblDoctorImpersonation.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        lblDoctorImpersonation.setText("Doctor");
 
-        jLabel14.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jLabel14.setText("Patient");
+        lblPatientImpersonation.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        lblPatientImpersonation.setText("Patient");
 
-        jComboBox3.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select one" }));
+        cmbPatientImpersonation.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        cmbPatientImpersonation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select one" }));
 
-        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        sepAdminSide.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jButton10.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jButton10.setText("Logout");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        btnLogout.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                btnLogoutActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout panelRound3Layout = new javax.swing.GroupLayout(panelRound3);
-        panelRound3.setLayout(panelRound3Layout);
-        panelRound3Layout.setHorizontalGroup(
-            panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound3Layout.createSequentialGroup()
-                .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelRound3Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlAdminContentLayout = new javax.swing.GroupLayout(pnlAdminContent);
+        pnlAdminContent.setLayout(pnlAdminContentLayout);
+        pnlAdminContentLayout.setHorizontalGroup(
+            pnlAdminContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAdminContentLayout.createSequentialGroup()
+                .addGroup(pnlAdminContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlAdminContentLayout.createSequentialGroup()
                         .addGap(326, 326, 326)
-                        .addComponent(jButton9)
+                        .addComponent(btnRegisterDoctor)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(panelRound3Layout.createSequentialGroup()
+                    .addGroup(pnlAdminContentLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelRound3Layout.createSequentialGroup()
-                                .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel7))
+                        .addGroup(pnlAdminContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlAdminContentLayout.createSequentialGroup()
+                                .addGroup(pnlAdminContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblDoctorFirstname)
+                                    .addComponent(lblDoctorSpecialty))
                                 .addGap(18, 18, 18)
-                                .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelRound3Layout.createSequentialGroup()
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(pnlAdminContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlAdminContentLayout.createSequentialGroup()
+                                        .addComponent(cmbDoctorSpecialty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jLabel8)
+                                        .addComponent(lblDoctorLicence)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelRound3Layout.createSequentialGroup()
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtDoctorLicence, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(pnlAdminContentLayout.createSequentialGroup()
+                                        .addComponent(txtDoctorFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(35, 35, 35)
-                                        .addComponent(jLabel5)
+                                        .addComponent(lblDoctorLastname)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtDoctorLastname, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jLabel6)
+                                        .addComponent(lblDoctorId)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(panelRound3Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
+                                        .addComponent(txtDoctorId, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(pnlAdminContentLayout.createSequentialGroup()
+                                .addComponent(lblDoctorOffice)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelRound3Layout.createSequentialGroup()
-                                .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(panelRound3Layout.createSequentialGroup()
-                                        .addComponent(jLabel10)
+                                .addComponent(txtDoctorOffice, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlAdminContentLayout.createSequentialGroup()
+                                .addGroup(pnlAdminContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(pnlAdminContentLayout.createSequentialGroup()
+                                        .addComponent(lblDoctorUsername)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelRound3Layout.createSequentialGroup()
-                                        .addComponent(jLabel11)
+                                        .addComponent(txtDoctorUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(pnlAdminContentLayout.createSequentialGroup()
+                                        .addComponent(lblDoctorPassword)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelRound3Layout.createSequentialGroup()
-                                        .addComponent(jLabel12)
+                                        .addComponent(txtDoctorPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(pnlAdminContentLayout.createSequentialGroup()
+                                        .addComponent(lblDoctorPasswordConfirm)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txtDoctorPasswordConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(333, 333, 333)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                        .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addGroup(panelRound3Layout.createSequentialGroup()
-                                .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelRound3Layout.createSequentialGroup()
+                        .addGroup(pnlAdminContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnOpenDoctorView)
+                            .addGroup(pnlAdminContentLayout.createSequentialGroup()
+                                .addGroup(pnlAdminContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlAdminContentLayout.createSequentialGroup()
                                         .addGap(12, 12, 12)
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelRound3Layout.createSequentialGroup()
+                                        .addComponent(cmbDoctorImpersonation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(pnlAdminContentLayout.createSequentialGroup()
                                         .addGap(47, 47, 47)
-                                        .addComponent(jLabel13)))
+                                        .addComponent(lblDoctorImpersonation)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(74, 74, 74))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound3Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminContentLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton10)
+                        .addComponent(btnLogout)
                         .addGap(318, 318, 318)))
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelRound3Layout.createSequentialGroup()
+                .addComponent(sepAdminMain, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlAdminContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlAdminContentLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3)
-                            .addGroup(panelRound3Layout.createSequentialGroup()
+                        .addGroup(pnlAdminContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnOpenPatientView)
+                            .addGroup(pnlAdminContentLayout.createSequentialGroup()
                                 .addGap(13, 13, 13)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(panelRound3Layout.createSequentialGroup()
+                                .addComponent(cmbPatientImpersonation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(pnlAdminContentLayout.createSequentialGroup()
                         .addGap(59, 59, 59)
-                        .addComponent(jLabel14)))
+                        .addComponent(lblPatientImpersonation)))
                 .addGap(88, 88, 88))
-            .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound3Layout.createSequentialGroup()
+            .addGroup(pnlAdminContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminContentLayout.createSequentialGroup()
                     .addContainerGap(707, Short.MAX_VALUE)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sepAdminSide, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(523, 523, 523)))
         );
-        panelRound3Layout.setVerticalGroup(
-            panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound3Layout.createSequentialGroup()
-                .addComponent(jSeparator1)
+        pnlAdminContentLayout.setVerticalGroup(
+            pnlAdminContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAdminContentLayout.createSequentialGroup()
+                .addComponent(sepAdminMain)
                 .addContainerGap())
-            .addGroup(panelRound3Layout.createSequentialGroup()
+            .addGroup(pnlAdminContentLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlAdminContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDoctorFirstname)
+                    .addComponent(txtDoctorFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDoctorLastname)
+                    .addComponent(txtDoctorLastname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDoctorId)
+                    .addComponent(txtDoctorId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlAdminContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDoctorSpecialty)
+                    .addComponent(cmbDoctorSpecialty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDoctorLicence)
+                    .addComponent(txtDoctorLicence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelRound3Layout.createSequentialGroup()
+                .addGroup(pnlAdminContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDoctorOffice)
+                    .addComponent(txtDoctorOffice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlAdminContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlAdminContentLayout.createSequentialGroup()
                         .addGap(81, 81, 81)
-                        .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlAdminContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblDoctorUsername)
+                            .addComponent(txtDoctorUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlAdminContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblDoctorPassword)
+                            .addComponent(txtDoctorPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(15, 15, 15)
-                        .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelRound3Layout.createSequentialGroup()
+                        .addGroup(pnlAdminContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblDoctorPasswordConfirm)
+                            .addComponent(txtDoctorPasswordConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlAdminContentLayout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addComponent(jLabel13)
+                        .addComponent(lblDoctorImpersonation)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbDoctorImpersonation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(43, 43, 43)
-                        .addComponent(jButton2)))
+                        .addComponent(btnOpenDoctorView)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                .addComponent(jButton9)
+                .addComponent(btnRegisterDoctor)
                 .addGap(123, 123, 123)
-                .addComponent(jButton10)
+                .addComponent(btnLogout)
                 .addGap(38, 38, 38))
-            .addGroup(panelRound3Layout.createSequentialGroup()
+            .addGroup(pnlAdminContentLayout.createSequentialGroup()
                 .addGap(203, 203, 203)
-                .addComponent(jLabel14)
+                .addComponent(lblPatientImpersonation)
                 .addGap(18, 18, 18)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbPatientImpersonation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
-                .addComponent(jButton3)
+                .addComponent(btnOpenPatientView)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelRound3Layout.createSequentialGroup()
+            .addGroup(pnlAdminContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlAdminContentLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jSeparator2)
+                    .addComponent(sepAdminSide)
                     .addContainerGap()))
         );
 
-        javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
-        panelRound1.setLayout(panelRound1Layout);
-        panelRound1Layout.setHorizontalGroup(
-            panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelRound2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(panelRound3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout pnlRootLayout = new javax.swing.GroupLayout(pnlRoot);
+        pnlRoot.setLayout(pnlRootLayout);
+        pnlRootLayout.setHorizontalGroup(
+            pnlRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlTitleBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlAdminContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        panelRound1Layout.setVerticalGroup(
-            panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound1Layout.createSequentialGroup()
-                .addComponent(panelRound2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        pnlRootLayout.setVerticalGroup(
+            pnlRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlRootLayout.createSequentialGroup()
+                .addComponent(pnlTitleBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelRound3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnlAdminContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelRound1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlRoot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelRound1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlRoot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void panelRound2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound2MousePressed
+    private void pnlTitleBarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTitleBarMousePressed
         x = evt.getX();
         y = evt.getY();
-    }//GEN-LAST:event_panelRound2MousePressed
+    }//GEN-LAST:event_pnlTitleBarMousePressed
 
-    private void panelRound2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound2MouseDragged
+    private void pnlTitleBarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTitleBarMouseDragged
         this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY() - y);
-    }//GEN-LAST:event_panelRound2MouseDragged
+    }//GEN-LAST:event_pnlTitleBarMouseDragged
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCloseWindowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseWindowActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnCloseWindowActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void btnRegisterDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterDoctorActionPerformed
         String specialtyDisplay = "";
-        if (jComboBox1.getSelectedIndex() > 0) {
-            specialtyDisplay = jComboBox1.getItemAt(jComboBox1.getSelectedIndex());
+        if (cmbDoctorSpecialty.getSelectedIndex() > 0) {
+            specialtyDisplay = cmbDoctorSpecialty.getItemAt(cmbDoctorSpecialty.getSelectedIndex());
         }
 
         Response response = UserController.registerDoctor(
-                jTextField5.getText(),
-                jTextField3.getText(),
-                jTextField4.getText(),
-                jTextField8.getText(),
-                jTextField9.getText(),
-                jTextField10.getText(),
+                txtDoctorId.getText(),
+                txtDoctorFirstname.getText(),
+                txtDoctorLastname.getText(),
+                txtDoctorUsername.getText(),
+                txtDoctorPassword.getText(),
+                txtDoctorPasswordConfirm.getText(),
                 specialtyDisplay,
-                jTextField6.getText(),
-                jTextField7.getText()
+                txtDoctorLicence.getText(),
+                txtDoctorOffice.getText()
         );
 
         ViewUtils.showResponseMessage(response);
@@ -452,22 +452,22 @@ public class NewJFrame11 extends javax.swing.JFrame {
         if (response.getStatus() == Status.CREATED) {
             clearDoctorRegisterFields();
         }
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_btnRegisterDoctorActionPerformed
 
     private void clearDoctorRegisterFields() {
-        jTextField3.setText("");
-        jTextField4.setText("");
-        jTextField5.setText("");
-        jTextField6.setText("");
-        jTextField7.setText("");
-        jTextField8.setText("");
-        jTextField9.setText("");
-        jTextField10.setText("");
-        jComboBox1.setSelectedIndex(0);
+        txtDoctorFirstname.setText("");
+        txtDoctorLastname.setText("");
+        txtDoctorId.setText("");
+        txtDoctorLicence.setText("");
+        txtDoctorOffice.setText("");
+        txtDoctorUsername.setText("");
+        txtDoctorPassword.setText("");
+        txtDoctorPasswordConfirm.setText("");
+        cmbDoctorSpecialty.setSelectedIndex(0);
     }
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        long doctorId = parseIdFromCombo((String) jComboBox2.getSelectedItem());
+    private void btnOpenDoctorViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenDoctorViewActionPerformed
+        long doctorId = parseIdFromCombo((String) cmbDoctorImpersonation.getSelectedItem());
         if (doctorId < 0) {
             ViewUtils.showResponseMessage(new Response("Select a valid doctor", Status.BAD_REQUEST));
             return;
@@ -482,14 +482,14 @@ public class NewJFrame11 extends javax.swing.JFrame {
         NewJFrame111 doctorView = new NewJFrame111(user, selectedDoctor, users, currentHospitalizations, currentAppointments);
         this.setVisible(false);
         doctorView.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnOpenDoctorViewActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         ViewUtils.performLogout(this);
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        long patientId = parseIdFromCombo((String) jComboBox3.getSelectedItem());
+    private void btnOpenPatientViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenPatientViewActionPerformed
+        long patientId = parseIdFromCombo((String) cmbPatientImpersonation.getSelectedItem());
         if (patientId < 0) {
             ViewUtils.showResponseMessage(new Response("Select a valid patient", Status.BAD_REQUEST));
             return;
@@ -504,11 +504,11 @@ public class NewJFrame11 extends javax.swing.JFrame {
         NewJFrame1 patientView = new NewJFrame1(user, selectedPatient, users, currentAppointments, currentHospitalizations);
         this.setVisible(false);
         patientView.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnOpenPatientViewActionPerformed
 
     private void loadAdminImpersonationCombos() {
-        fillComboFromResponse(jComboBox2, AppointmentController.getDoctorComboOptions());
-        fillComboFromResponse(jComboBox3, AppointmentController.listPatientComboOptions());
+        fillComboFromResponse(cmbDoctorImpersonation, AppointmentController.getDoctorComboOptions());
+        fillComboFromResponse(cmbPatientImpersonation, AppointmentController.listPatientComboOptions());
     }
 
     private void fillComboFromResponse(javax.swing.JComboBox<String> combo, Response response) {
@@ -581,38 +581,38 @@ public class NewJFrame11 extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
-    private core.views.components.PanelRound panelRound1;
-    private core.views.components.PanelRound panelRound2;
-    private core.views.components.PanelRound panelRound3;
+    private javax.swing.JButton btnCloseWindow;
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnOpenDoctorView;
+    private javax.swing.JButton btnOpenPatientView;
+    private javax.swing.JButton btnRegisterDoctor;
+    private javax.swing.JComboBox<String> cmbDoctorSpecialty;
+    private javax.swing.JComboBox<String> cmbDoctorImpersonation;
+    private javax.swing.JComboBox<String> cmbPatientImpersonation;
+    private javax.swing.JLabel lblAdminTitle;
+    private javax.swing.JLabel lblDoctorUsername;
+    private javax.swing.JLabel lblDoctorPassword;
+    private javax.swing.JLabel lblDoctorPasswordConfirm;
+    private javax.swing.JLabel lblDoctorImpersonation;
+    private javax.swing.JLabel lblPatientImpersonation;
+    private javax.swing.JLabel lblDoctorFirstname;
+    private javax.swing.JLabel lblDoctorLastname;
+    private javax.swing.JLabel lblDoctorId;
+    private javax.swing.JLabel lblDoctorSpecialty;
+    private javax.swing.JLabel lblDoctorLicence;
+    private javax.swing.JLabel lblDoctorOffice;
+    private javax.swing.JSeparator sepAdminMain;
+    private javax.swing.JSeparator sepAdminSide;
+    private javax.swing.JTextField txtDoctorPasswordConfirm;
+    private javax.swing.JTextField txtDoctorFirstname;
+    private javax.swing.JTextField txtDoctorLastname;
+    private javax.swing.JTextField txtDoctorId;
+    private javax.swing.JTextField txtDoctorLicence;
+    private javax.swing.JTextField txtDoctorOffice;
+    private javax.swing.JTextField txtDoctorUsername;
+    private javax.swing.JTextField txtDoctorPassword;
+    private core.views.components.PanelRound pnlRoot;
+    private core.views.components.PanelRound pnlTitleBar;
+    private core.views.components.PanelRound pnlAdminContent;
     // End of variables declaration//GEN-END:variables
 }
