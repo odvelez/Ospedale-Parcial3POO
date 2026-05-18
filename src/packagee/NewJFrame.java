@@ -5,13 +5,12 @@
 package packagee;
 
 import core.controllers.AuthController;
+import core.controllers.UserController;
 import core.controllers.utils.Response;
 import core.controllers.utils.Status;
 import core.controllers.utils.ViewUtils;
 import core.models.storage.Storage;
 import java.awt.Color;
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -451,23 +450,45 @@ public class NewJFrame extends javax.swing.JFrame {
     }
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        String firstname = jTextField3.getText();
-        String lastname = jTextField4.getText();
-        long id = Long.parseLong(jTextField5.getText());
-        boolean gender = (jComboBox1.getSelectedIndex() == 0 ? null : (jComboBox1.getSelectedIndex() == 1 ));
-        String birth = jTextField12.getText();
-        String address = jTextField11.getText();
-        long phone = Long.parseLong(jTextField6.getText());
-        String email = jTextField7.getText();
-        String user = jTextField8.getText();
-        String password = jTextField9.getText();
-        String comPassword = jTextField10.getText();
-        LocalDate birthdate = LocalDate.of(Integer.parseInt(birth.substring(0, 4)), Integer.parseInt(birth.substring(5, 7)), Integer.parseInt(birth.substring(8)));
-        if (comPassword.equals(password)) {
-            users.add(new Patient(id, user, firstname, lastname, password, email, birthdate, gender, phone, address));
+        String gender = "";
+        if (jComboBox1.getSelectedIndex() > 0) {
+            gender = jComboBox1.getItemAt(jComboBox1.getSelectedIndex());
         }
-        
+
+        Response response = UserController.registerPatient(
+                jTextField5.getText(),
+                jTextField3.getText(),
+                jTextField4.getText(),
+                jTextField8.getText(),
+                jTextField9.getText(),
+                jTextField10.getText(),
+                jTextField7.getText(),
+                jTextField12.getText(),
+                jTextField6.getText(),
+                jTextField11.getText(),
+                gender
+        );
+
+        ViewUtils.showResponseMessage(response);
+
+        if (response.getStatus() == Status.CREATED) {
+            clearPatientRegisterFields();
+        }
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void clearPatientRegisterFields() {
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        jTextField6.setText("");
+        jTextField7.setText("");
+        jTextField8.setText("");
+        jTextField9.setText("");
+        jTextField10.setText("");
+        jTextField11.setText("");
+        jTextField12.setText("");
+        jComboBox1.setSelectedIndex(0);
+    }
 
     private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
         // TODO add your handling code here:
