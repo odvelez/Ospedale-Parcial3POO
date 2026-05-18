@@ -98,4 +98,16 @@ public class Storage {
         }
         return null;
     }
+
+    public Hospitalization findHospitalizationById(String hospitalizationId) {
+        if (hospitalizationId == null) {
+            return null;
+        }
+        for (Hospitalization hospitalization : hospitalizations) {
+            if (hospitalizationId.equals(hospitalization.getId())) {
+                return hospitalization;
+            }
+        }
+        return null;
+    }
 }

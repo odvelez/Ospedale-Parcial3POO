@@ -2,9 +2,9 @@ package core.controllers;
 
 import core.controllers.utils.Response;
 import core.controllers.utils.Status;
+import core.models.Administrator;
 import core.models.storage.Storage;
 import java.util.HashMap;
-import packagee.Administrator;
 import packagee.Doctor;
 import packagee.Patient;
 import packagee.User;

@@ -45,6 +45,10 @@ public class Patient extends User {
         this.hospitalization = hospitalization;
     }
 
+    public Hospitalization getHospitalization() {
+        return hospitalization;
+    }
+
     public String getEmail() {
         return email;
     }

@@ -7,7 +7,8 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import packagee.Administrator;
+
+import core.models.Administrator;
 import packagee.Doctor;
 import packagee.Patient;
 import packagee.Specialty;

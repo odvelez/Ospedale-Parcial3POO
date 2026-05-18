@@ -5,19 +5,17 @@
 package packagee;
 
 import core.controllers.AppointmentController;
+import core.controllers.HospitalizationController;
 import core.controllers.UserController;
 import core.controllers.utils.Response;
 import core.controllers.utils.Status;
 import core.controllers.utils.ViewUtils;
+import core.models.Administrator;
 import core.models.storage.Storage;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -39,7 +37,7 @@ public class NewJFrame1 extends javax.swing.JFrame {
         this.user = user;
         this.users = users;
         this.patient = patient;
-        this.hospitalizations = hospitalizations;
+        this.hospitalizations = Storage.getInstance().getHospitalizations();
         this.appointments = Storage.getInstance().getAppointments();
         if (user instanceof Administrator) {
             jButton7.setVisible(true);
@@ -51,6 +49,7 @@ public class NewJFrame1 extends javax.swing.JFrame {
         loadPatientProfile();
         refreshAppointmentTable();
         loadCancelAppointmentCombo();
+        loadHospitalizationCombos();
     }
 
     /**
@@ -949,20 +948,34 @@ public class NewJFrame1 extends javax.swing.JFrame {
     }
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        String hospitalizationReason = jTextArea3.getText();
-        long idDoctor = Long.parseLong(jComboBox2.getItemAt(jComboBox2.getSelectedIndex()));
-        Doctor doc = null;
-        for(User use: this.users){
-            if (use.id  == idDoctor ){
-                doc = (Doctor) use;
-            }
+        String doctorSelection = (String) jComboBox2.getSelectedItem();
+        String roomTypeDisplay = (String) jComboBox3.getSelectedItem();
+        Response response = HospitalizationController.requestHospitalization(
+                patient.getId(),
+                doctorSelection,
+                jTextField16.getText(),
+                jTextArea3.getText(),
+                roomTypeDisplay,
+                jTextArea1.getText());
+        ViewUtils.showResponseMessage(response);
+        if (response.getStatus() == Status.CREATED) {
+            clearHospitalizationRequestFields();
+            this.hospitalizations = Storage.getInstance().getHospitalizations();
         }
-        LocalDate stimateDate = LocalDate.of(Integer.parseInt(jTextField16.getText().substring(0, 4)),Integer.parseInt(jTextField16.getText().substring(5, 7)), Integer.parseInt(jTextField16.getText().substring(8)));
-        
-        RoomType desireRoom = RoomType.valueOf(jComboBox3.getItemAt(jComboBox3.getSelectedIndex()).toUpperCase());
-        String observations = jTextArea1.getText();
-        this.hospitalizations.add(new Hospitalization(observations, this.patient, doc, stimateDate, observations, desireRoom, observations));
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void loadHospitalizationCombos() {
+        fillComboFromResponse(jComboBox2, AppointmentController.getDoctorComboOptions());
+        fillComboFromResponse(jComboBox3, HospitalizationController.getRoomTypeComboOptions());
+    }
+
+    private void clearHospitalizationRequestFields() {
+        jTextArea3.setText("");
+        jTextArea1.setText("");
+        jTextField16.setText("");
+        jComboBox2.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+    }
 
 
 
