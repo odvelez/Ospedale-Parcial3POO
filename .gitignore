@@ -1,2 +1,6 @@
+# NetBeans build output
 /build/
 /dist/
+
+# Local IDE settings (machine-specific paths, not shared)
+/nbproject/private/
