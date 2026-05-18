@@ -467,9 +467,9 @@ public class NewJFrame extends javax.swing.JFrame {
                 txtPatientUsername.getText(),
                 txtPatientPassword.getText(),
                 txtPatientPasswordConfirm.getText(),
-                txtPatientPhone.getText(),
-                txtPatientBirthdate.getText(),
                 txtPatientEmail.getText(),
+                txtPatientBirthdate.getText(),
+                txtPatientPhone.getText(),
                 txtPatientAddress.getText(),
                 gender
         );
