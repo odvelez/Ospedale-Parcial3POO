@@ -4,9 +4,10 @@ package core.controllers;
 // @author lvillarreale
 // @author joeltrespalaciosp
 
+import core.controllers.support.ComboOptionParser;
+import core.controllers.support.ControllerRepositories;
 import core.controllers.utils.Response;
 import core.controllers.utils.Status;
-import core.models.storage.Storage;
 import core.models.utils.AvailabilityService;
 import core.models.utils.IdGenerator;
 import java.time.LocalDate;
@@ -54,8 +55,7 @@ public class AppointmentController {
         try {
             ArrayList<String> options = new ArrayList<>();
             options.add("Select one");
-            Storage storage = Storage.getInstance();
-            for (User user : storage.getUsers()) {
+            for (User user : ControllerRepositories.USERS.getUsers()) {
                 if (user instanceof Doctor) {
                     Doctor doctor = (Doctor) user;
                     options.add(doctor.getId() + " - " + doctor.getFirstname() + " " + doctor.getLastname());
@@ -72,7 +72,7 @@ public class AppointmentController {
     public static Response requestAppointment(long patientId, boolean byDoctor, String comboSelection,
             String date, String time, String reason, String appointmentTypeDisplay) {
         try {
-            Patient patient = findPatientById(patientId);
+            Patient patient = ControllerRepositories.USER_LOOKUP.findPatientById(patientId);
             if (patient == null) {
                 return new Response("Patient not found", Status.NOT_FOUND);
             }
@@ -99,11 +99,11 @@ public class AppointmentController {
             Specialty specialty = null;
 
             if (byDoctor) {
-                Long doctorId = parseDoctorIdFromCombo(comboSelection);
+                Long doctorId = ComboOptionParser.parseDoctorIdFromCombo(comboSelection);
                 if (doctorId == null) {
                     return new Response("Doctor must be selected", Status.BAD_REQUEST);
                 }
-                doctor = findDoctorById(doctorId);
+                doctor = ControllerRepositories.USER_LOOKUP.findDoctorById(doctorId);
                 if (doctor == null) {
                     return new Response("Doctor is not valid", Status.BAD_REQUEST);
                 }
@@ -127,8 +127,7 @@ public class AppointmentController {
             Appointment appointment = new Appointment(appointmentId, patient, doctor, specialty, datetime,
                     reason.trim(), inPerson);
 
-            Storage storage = Storage.getInstance();
-            storage.addAppointment(appointment);
+            ControllerRepositories.APPOINTMENTS.add(appointment);
             patient.addAppointment(appointment);
             doctor.getAppointments().add(appointment);
 
@@ -140,15 +139,15 @@ public class AppointmentController {
 
     public static Response cancelAppointment(long patientId, String appointmentId, String observations) {
         try {
-            Patient patient = findPatientById(patientId);
+            Patient patient = ControllerRepositories.USER_LOOKUP.findPatientById(patientId);
             if (patient == null) {
                 return new Response("Patient not found", Status.NOT_FOUND);
             }
-            if (appointmentId == null || appointmentId.trim().isEmpty() || "Select one".equals(appointmentId)) {
+            if (ComboOptionParser.isMissingSelection(appointmentId)) {
                 return new Response("Appointment must be selected", Status.BAD_REQUEST);
             }
 
-            Appointment appointment = Storage.getInstance().findAppointmentById(appointmentId.trim());
+            Appointment appointment = ControllerRepositories.APPOINTMENTS.findById(appointmentId.trim());
             if (appointment == null) {
                 return new Response("Appointment is not valid", Status.BAD_REQUEST);
             }
@@ -175,7 +174,7 @@ public class AppointmentController {
 
     public static Response acceptAppointment(long doctorId, String appointmentId) {
         try {
-            Doctor doctor = findDoctorById(doctorId);
+            Doctor doctor = ControllerRepositories.USER_LOOKUP.findDoctorById(doctorId);
             if (doctor == null) {
                 return new Response("Doctor not found", Status.NOT_FOUND);
             }
@@ -196,7 +195,7 @@ public class AppointmentController {
     public static Response completeAppointment(long doctorId, String appointmentId, String diagnosis,
             String observations, String recommendedTreatment, String followUp) {
         try {
-            Doctor doctor = findDoctorById(doctorId);
+            Doctor doctor = ControllerRepositories.USER_LOOKUP.findDoctorById(doctorId);
             if (doctor == null) {
                 return new Response("Doctor not found", Status.NOT_FOUND);
             }
@@ -229,7 +228,7 @@ public class AppointmentController {
     public static Response rescheduleAppointment(long doctorId, String appointmentId, String newTime,
             String rescheduleReason) {
         try {
-            Doctor doctor = findDoctorById(doctorId);
+            Doctor doctor = ControllerRepositories.USER_LOOKUP.findDoctorById(doctorId);
             if (doctor == null) {
                 return new Response("Doctor not found", Status.NOT_FOUND);
             }
@@ -275,7 +274,7 @@ public class AppointmentController {
             double dose, String administrationRoute, int treatmentDuration, String additionalInstructions,
             int frequency) {
         try {
-            Doctor doctor = findDoctorById(doctorId);
+            Doctor doctor = ControllerRepositories.USER_LOOKUP.findDoctorById(doctorId);
             if (doctor == null) {
                 return new Response("Doctor not found", Status.NOT_FOUND);
             }
@@ -310,7 +309,7 @@ public class AppointmentController {
 
     public static Response listPatientAppointments(long patientId) {
         try {
-            Patient patient = findPatientById(patientId);
+            Patient patient = ControllerRepositories.USER_LOOKUP.findPatientById(patientId);
             if (patient == null) {
                 return new Response("Patient not found", Status.NOT_FOUND);
             }
@@ -327,7 +326,7 @@ public class AppointmentController {
 
     public static Response listDoctorAppointments(long doctorId, boolean pendingOnly) {
         try {
-            Doctor doctor = findDoctorById(doctorId);
+            Doctor doctor = ControllerRepositories.USER_LOOKUP.findDoctorById(doctorId);
             if (doctor == null) {
                 return new Response("Doctor not found", Status.NOT_FOUND);
             }
@@ -355,8 +354,7 @@ public class AppointmentController {
         try {
             ArrayList<String> options = new ArrayList<>();
             options.add("Select one");
-            Storage storage = Storage.getInstance();
-            for (User user : storage.getUsers()) {
+            for (User user : ControllerRepositories.USERS.getUsers()) {
                 if (user instanceof Patient) {
                     Patient patient = (Patient) user;
                     options.add(patient.getId() + " - " + patient.getFirstname() + " " + patient.getLastname());
@@ -372,7 +370,7 @@ public class AppointmentController {
 
     public static Response listDoctorAppointmentIds(long doctorId, String statusFilter) {
         try {
-            Doctor doctor = findDoctorById(doctorId);
+            Doctor doctor = ControllerRepositories.USER_LOOKUP.findDoctorById(doctorId);
             if (doctor == null) {
                 return new Response("Doctor not found", Status.NOT_FOUND);
             }
@@ -395,7 +393,7 @@ public class AppointmentController {
 
     public static Response listCancellableAppointmentIds(long patientId) {
         try {
-            Patient patient = findPatientById(patientId);
+            Patient patient = ControllerRepositories.USER_LOOKUP.findPatientById(patientId);
             if (patient == null) {
                 return new Response("Patient not found", Status.NOT_FOUND);
             }
@@ -419,8 +417,7 @@ public class AppointmentController {
 
     private static ArrayList<Appointment> collectAppointmentsForPatient(long patientId) {
         ArrayList<Appointment> result = new ArrayList<>();
-        Storage storage = Storage.getInstance();
-        for (Appointment appointment : storage.getAppointments()) {
+        for (Appointment appointment : ControllerRepositories.APPOINTMENTS.getAll()) {
             if (appointment.getPatient() != null && appointment.getPatient().getId() == patientId) {
                 result.add(appointment);
             }
@@ -430,8 +427,7 @@ public class AppointmentController {
 
     private static ArrayList<Appointment> collectAppointmentsForDoctor(long doctorId) {
         ArrayList<Appointment> result = new ArrayList<>();
-        Storage storage = Storage.getInstance();
-        for (Appointment appointment : storage.getAppointments()) {
+        for (Appointment appointment : ControllerRepositories.APPOINTMENTS.getAll()) {
             if (appointment.getDoctor() != null && appointment.getDoctor().getId() == doctorId) {
                 result.add(appointment);
             }
@@ -517,8 +513,7 @@ public class AppointmentController {
     }
 
     private static Doctor findAvailableDoctorForSpecialty(Specialty specialty, LocalDateTime datetime) {
-        Storage storage = Storage.getInstance();
-        for (User user : storage.getUsers()) {
+        for (User user : ControllerRepositories.USERS.getUsers()) {
             if (user instanceof Doctor) {
                 Doctor doctor = (Doctor) user;
                 if (doctor.getSpecialty() == specialty
@@ -534,7 +529,7 @@ public class AppointmentController {
         if (appointmentId == null || appointmentId.trim().isEmpty()) {
             return null;
         }
-        Appointment appointment = Storage.getInstance().findAppointmentById(appointmentId.trim());
+        Appointment appointment = ControllerRepositories.APPOINTMENTS.findById(appointmentId.trim());
         if (appointment == null) {
             return null;
         }
@@ -542,26 +537,6 @@ public class AppointmentController {
             return null;
         }
         return appointment;
-    }
-
-    private static Long parseDoctorIdFromCombo(String comboSelection) {
-        if (comboSelection == null || comboSelection.trim().isEmpty() || "Select one".equals(comboSelection)) {
-            return null;
-        }
-        String trimmed = comboSelection.trim();
-        int separatorIndex = trimmed.indexOf(" - ");
-        if (separatorIndex > 0) {
-            try {
-                return Long.parseLong(trimmed.substring(0, separatorIndex).trim());
-            } catch (NumberFormatException ex) {
-                return null;
-            }
-        }
-        try {
-            return Long.parseLong(trimmed);
-        } catch (NumberFormatException ex) {
-            return null;
-        }
     }
 
     private static LocalDate parseDate(String date) {
@@ -595,7 +570,7 @@ public class AppointmentController {
         if (appointmentTypeDisplay == null || appointmentTypeDisplay.trim().isEmpty()) {
             return null;
         }
-        if ("Select one".equals(appointmentTypeDisplay)) {
+        if (ComboOptionParser.isMissingSelection(appointmentTypeDisplay)) {
             return null;
         }
         if ("In-person".equals(appointmentTypeDisplay)) {
@@ -607,29 +582,8 @@ public class AppointmentController {
         return null;
     }
 
-    private static Patient findPatientById(long patientId) {
-        Storage storage = Storage.getInstance();
-        User user = storage.findUserById(patientId);
-        if (user instanceof Patient) {
-            return (Patient) user;
-        }
-        return null;
-    }
-
-    private static Doctor findDoctorById(long doctorId) {
-        Storage storage = Storage.getInstance();
-        User user = storage.findUserById(doctorId);
-        if (user instanceof Doctor) {
-            return (Doctor) user;
-        }
-        return null;
-    }
-
     private static Specialty parseSpecialtyFromDisplay(String specialtyDisplay) {
-        if (specialtyDisplay == null || specialtyDisplay.trim().isEmpty()) {
-            return null;
-        }
-        if ("Select one".equals(specialtyDisplay)) {
+        if (ComboOptionParser.isMissingSelection(specialtyDisplay)) {
             return null;
         }
         if ("General Medicine".equals(specialtyDisplay)) {

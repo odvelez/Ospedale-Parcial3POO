@@ -4,13 +4,13 @@ package core.controllers;
 // @author lvillarreale
 // @author joeltrespalaciosp
 
+import core.controllers.support.ControllerRepositories;
 import core.controllers.utils.Response;
 import core.controllers.utils.Status;
 import core.models.entities.Administrator;
 import core.models.entities.Doctor;
 import core.models.entities.Patient;
 import core.models.entities.User;
-import core.models.storage.Storage;
 import java.util.HashMap;
 
 public class AuthController {
@@ -24,8 +24,7 @@ public class AuthController {
                 return new Response("Password is required", Status.BAD_REQUEST);
             }
 
-            Storage storage = Storage.getInstance();
-            User found = storage.findUserByUsername(username.trim());
+            User found = ControllerRepositories.USERS.findByUsername(username.trim());
 
             if (found == null) {
                 return new Response("User not found", Status.NOT_FOUND);
@@ -34,7 +33,7 @@ public class AuthController {
                 return new Response("Invalid password", Status.BAD_REQUEST);
             }
 
-            storage.setCurrentUser(found);
+            ControllerRepositories.USERS.setCurrentUser(found);
 
             HashMap<String, Object> data = new HashMap<>();
             data.put("id", found.getId());
@@ -58,7 +57,7 @@ public class AuthController {
 
     public static Response logout() {
         try {
-            Storage.getInstance().setCurrentUser(null);
+            ControllerRepositories.USERS.setCurrentUser(null);
             return new Response("Logged out successfully", Status.OK);
         } catch (Exception ex) {
             return new Response("Unexpected error", Status.INTERNAL_SERVER_ERROR);

@@ -4,9 +4,10 @@ package core.controllers;
 // @author lvillarreale
 // @author joeltrespalaciosp
 
+import core.controllers.support.ComboOptionParser;
+import core.controllers.support.ControllerRepositories;
 import core.controllers.utils.Response;
 import core.controllers.utils.Status;
-import core.models.storage.Storage;
 import core.models.utils.IdGenerator;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -45,7 +46,7 @@ public class HospitalizationController {
     public static Response requestHospitalization(long patientId, String doctorSelection, String admissionDate,
             String reason, String roomTypeDisplay, String observations) {
         try {
-            Patient patient = findPatientById(patientId);
+            Patient patient = ControllerRepositories.USER_LOOKUP.findPatientById(patientId);
             if (patient == null) {
                 return new Response("Patient not found", Status.NOT_FOUND);
             }
@@ -53,11 +54,11 @@ public class HospitalizationController {
                 return new Response("Hospitalization reason must not be empty", Status.BAD_REQUEST);
             }
 
-            Long doctorId = parseDoctorIdFromCombo(doctorSelection);
+            Long doctorId = ComboOptionParser.parseDoctorIdFromCombo(doctorSelection);
             if (doctorId == null) {
                 return new Response("Attending doctor must be selected", Status.BAD_REQUEST);
             }
-            Doctor doctor = findDoctorById(doctorId);
+            Doctor doctor = ControllerRepositories.USER_LOOKUP.findDoctorById(doctorId);
             if (doctor == null) {
                 return new Response("Doctor is not valid", Status.BAD_REQUEST);
             }
@@ -85,8 +86,7 @@ public class HospitalizationController {
             Hospitalization hospitalization = new Hospitalization(hospitalizationId, patient, doctor, parsedDate,
                     reason.trim(), roomType, observationsValue);
 
-            Storage storage = Storage.getInstance();
-            storage.addHospitalization(hospitalization);
+            ControllerRepositories.HOSPITALIZATIONS.add(hospitalization);
 
             return new Response("Hospitalization requested successfully", Status.CREATED);
         } catch (Exception ex) {
@@ -96,7 +96,7 @@ public class HospitalizationController {
 
     public static Response approveHospitalization(long doctorId, String hospitalizationId) {
         try {
-            Doctor doctor = findDoctorById(doctorId);
+            Doctor doctor = ControllerRepositories.USER_LOOKUP.findDoctorById(doctorId);
             if (doctor == null) {
                 return new Response("Doctor not found", Status.NOT_FOUND);
             }
@@ -116,7 +116,7 @@ public class HospitalizationController {
 
     public static Response denyHospitalization(long doctorId, String hospitalizationId) {
         try {
-            Doctor doctor = findDoctorById(doctorId);
+            Doctor doctor = ControllerRepositories.USER_LOOKUP.findDoctorById(doctorId);
             if (doctor == null) {
                 return new Response("Doctor not found", Status.NOT_FOUND);
             }
@@ -140,11 +140,11 @@ public class HospitalizationController {
     public static Response createFromAppointment(long doctorId, String appointmentId, String admissionDate,
             String reason, String roomTypeDisplay, String observations) {
         try {
-            Doctor doctor = findDoctorById(doctorId);
+            Doctor doctor = ControllerRepositories.USER_LOOKUP.findDoctorById(doctorId);
             if (doctor == null) {
                 return new Response("Doctor not found", Status.NOT_FOUND);
             }
-            Appointment appointment = Storage.getInstance().findAppointmentById(appointmentId);
+            Appointment appointment = ControllerRepositories.APPOINTMENTS.findById(appointmentId);
             if (appointment == null) {
                 return new Response("Appointment is not valid", Status.BAD_REQUEST);
             }
@@ -188,7 +188,7 @@ public class HospitalizationController {
             Hospitalization hospitalization = new Hospitalization(hospitalizationId, patient, doctor, parsedDate,
                     reason.trim(), roomType, observationsValue, HospitalizationStatus.ONGOING);
 
-            Storage.getInstance().addHospitalization(hospitalization);
+            ControllerRepositories.HOSPITALIZATIONS.add(hospitalization);
 
             return new Response("Hospitalization created from appointment successfully", Status.CREATED);
         } catch (Exception ex) {
@@ -198,7 +198,7 @@ public class HospitalizationController {
 
     public static Response listPatientHospitalizations(long patientId) {
         try {
-            Patient patient = findPatientById(patientId);
+            Patient patient = ControllerRepositories.USER_LOOKUP.findPatientById(patientId);
             if (patient == null) {
                 return new Response("Patient not found", Status.NOT_FOUND);
             }
@@ -214,7 +214,7 @@ public class HospitalizationController {
 
     public static Response listDoctorHospitalizations(long doctorId) {
         try {
-            Doctor doctor = findDoctorById(doctorId);
+            Doctor doctor = ControllerRepositories.USER_LOOKUP.findDoctorById(doctorId);
             if (doctor == null) {
                 return new Response("Doctor not found", Status.NOT_FOUND);
             }
@@ -230,7 +230,7 @@ public class HospitalizationController {
 
     public static Response listPendingHospitalizationIds(long doctorId) {
         try {
-            Doctor doctor = findDoctorById(doctorId);
+            Doctor doctor = ControllerRepositories.USER_LOOKUP.findDoctorById(doctorId);
             if (doctor == null) {
                 return new Response("Doctor not found", Status.NOT_FOUND);
             }
@@ -251,8 +251,7 @@ public class HospitalizationController {
     }
 
     private static boolean hasActiveHospitalization(long patientId) {
-        Storage storage = Storage.getInstance();
-        for (Hospitalization hospitalization : storage.getHospitalizations()) {
+        for (Hospitalization hospitalization : ControllerRepositories.HOSPITALIZATIONS.getAll()) {
             if (hospitalization.getPatient() != null && hospitalization.getPatient().getId() == patientId) {
                 if (hospitalization.getStatus() != HospitalizationStatus.CANCELED) {
                     return true;
@@ -264,8 +263,7 @@ public class HospitalizationController {
 
     private static ArrayList<Hospitalization> collectHospitalizationsForPatient(long patientId) {
         ArrayList<Hospitalization> result = new ArrayList<>();
-        Storage storage = Storage.getInstance();
-        for (Hospitalization hospitalization : storage.getHospitalizations()) {
+        for (Hospitalization hospitalization : ControllerRepositories.HOSPITALIZATIONS.getAll()) {
             if (hospitalization.getPatient() != null && hospitalization.getPatient().getId() == patientId) {
                 result.add(hospitalization);
             }
@@ -275,8 +273,7 @@ public class HospitalizationController {
 
     private static ArrayList<Hospitalization> collectHospitalizationsForDoctor(long doctorId) {
         ArrayList<Hospitalization> result = new ArrayList<>();
-        Storage storage = Storage.getInstance();
-        for (Hospitalization hospitalization : storage.getHospitalizations()) {
+        for (Hospitalization hospitalization : ControllerRepositories.HOSPITALIZATIONS.getAll()) {
             if (hospitalization.getDoctor() != null && hospitalization.getDoctor().getId() == doctorId) {
                 result.add(hospitalization);
             }
@@ -324,7 +321,7 @@ public class HospitalizationController {
         if (hospitalizationId == null || hospitalizationId.trim().isEmpty()) {
             return null;
         }
-        Hospitalization hospitalization = Storage.getInstance().findHospitalizationById(hospitalizationId.trim());
+        Hospitalization hospitalization = ControllerRepositories.HOSPITALIZATIONS.findById(hospitalizationId.trim());
         if (hospitalization == null) {
             return null;
         }
@@ -332,26 +329,6 @@ public class HospitalizationController {
             return null;
         }
         return hospitalization;
-    }
-
-    private static Long parseDoctorIdFromCombo(String comboSelection) {
-        if (comboSelection == null || comboSelection.trim().isEmpty() || "Select one".equals(comboSelection)) {
-            return null;
-        }
-        String trimmed = comboSelection.trim();
-        int separatorIndex = trimmed.indexOf(" - ");
-        if (separatorIndex > 0) {
-            try {
-                return Long.parseLong(trimmed.substring(0, separatorIndex).trim());
-            } catch (NumberFormatException ex) {
-                return null;
-            }
-        }
-        try {
-            return Long.parseLong(trimmed);
-        } catch (NumberFormatException ex) {
-            return null;
-        }
     }
 
     private static LocalDate parseDate(String date) {
@@ -369,7 +346,7 @@ public class HospitalizationController {
         if (roomTypeDisplay == null || roomTypeDisplay.trim().isEmpty()) {
             return null;
         }
-        if ("Select one".equals(roomTypeDisplay)) {
+        if (ComboOptionParser.isMissingSelection(roomTypeDisplay)) {
             return null;
         }
         try {
@@ -379,21 +356,4 @@ public class HospitalizationController {
         }
     }
 
-    private static Patient findPatientById(long patientId) {
-        Storage storage = Storage.getInstance();
-        User user = storage.findUserById(patientId);
-        if (user instanceof Patient) {
-            return (Patient) user;
-        }
-        return null;
-    }
-
-    private static Doctor findDoctorById(long doctorId) {
-        Storage storage = Storage.getInstance();
-        User user = storage.findUserById(doctorId);
-        if (user instanceof Doctor) {
-            return (Doctor) user;
-        }
-        return null;
-    }
 }

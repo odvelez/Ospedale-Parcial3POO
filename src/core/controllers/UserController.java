@@ -4,6 +4,8 @@ package core.controllers;
 // @author lvillarreale
 // @author joeltrespalaciosp
 
+import core.controllers.support.ComboOptionParser;
+import core.controllers.support.ControllerRepositories;
 import core.controllers.utils.Response;
 import core.controllers.utils.Status;
 import core.models.entities.Administrator;
@@ -11,7 +13,6 @@ import core.models.entities.Doctor;
 import core.models.entities.Patient;
 import core.models.entities.User;
 import core.models.enums.Specialty;
-import core.models.storage.Storage;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.HashMap;
@@ -68,18 +69,17 @@ public class UserController {
                 return new Response("Gender must be selected", Status.BAD_REQUEST);
             }
 
-            Storage storage = Storage.getInstance();
-            if (storage.findUserById(patientId) != null) {
+            if (ControllerRepositories.USERS.findById(patientId) != null) {
                 return new Response("A user with that id already exists", Status.BAD_REQUEST);
             }
-            if (storage.findUserByUsername(username.trim()) != null) {
+            if (ControllerRepositories.USERS.findByUsername(username.trim()) != null) {
                 return new Response("Username already exists", Status.BAD_REQUEST);
             }
 
             Patient patient = new Patient(patientId, username.trim(), firstname.trim(), lastname.trim(),
                     password, email.trim(), birthdateParsed, genderValue, Long.parseLong(phone.trim()), address.trim());
 
-            if (!storage.addUser(patient)) {
+            if (!ControllerRepositories.USERS.add(patient)) {
                 return new Response("Could not register patient", Status.BAD_REQUEST);
             }
 
@@ -93,8 +93,7 @@ public class UserController {
             String username, String password, String passwordConfirmation, String specialtyDisplay,
             String licenceNumber, String assignedOffice) {
         try {
-            Storage storage = Storage.getInstance();
-            User currentUser = storage.getCurrentUser();
+            User currentUser = ControllerRepositories.USERS.getCurrentUser();
             if (!(currentUser instanceof Administrator)) {
                 return new Response("Only administrators can register doctors", Status.BAD_REQUEST);
             }
@@ -135,17 +134,17 @@ public class UserController {
                 return new Response("Assigned office must follow the format O-XXX", Status.BAD_REQUEST);
             }
 
-            if (storage.findUserById(doctorId) != null) {
+            if (ControllerRepositories.USERS.findById(doctorId) != null) {
                 return new Response("A user with that id already exists", Status.BAD_REQUEST);
             }
-            if (storage.findUserByUsername(username.trim()) != null) {
+            if (ControllerRepositories.USERS.findByUsername(username.trim()) != null) {
                 return new Response("Username already exists", Status.BAD_REQUEST);
             }
 
             Doctor doctor = new Doctor(doctorId, username.trim(), firstname.trim(), lastname.trim(),
                     password, specialty, licenceNumber.trim(), assignedOffice.trim());
 
-            if (!storage.addUser(doctor)) {
+            if (!ControllerRepositories.USERS.add(doctor)) {
                 return new Response("Could not register doctor", Status.BAD_REQUEST);
             }
 
@@ -157,7 +156,7 @@ public class UserController {
 
     public static Response getPatientProfile(long patientId) {
         try {
-            Patient patient = findPatientById(patientId);
+            Patient patient = ControllerRepositories.USER_LOOKUP.findPatientById(patientId);
             if (patient == null) {
                 return new Response("Patient not found", Status.NOT_FOUND);
             }
@@ -169,7 +168,7 @@ public class UserController {
 
     public static Response getDoctorProfile(long doctorId) {
         try {
-            Doctor doctor = findDoctorById(doctorId);
+            Doctor doctor = ControllerRepositories.USER_LOOKUP.findDoctorById(doctorId);
             if (doctor == null) {
                 return new Response("Doctor not found", Status.NOT_FOUND);
             }
@@ -183,7 +182,7 @@ public class UserController {
             String username, String password, String passwordConfirmation, String email,
             String birthdate, String phone, String address, String gender) {
         try {
-            Patient patient = findPatientById(patientId);
+            Patient patient = ControllerRepositories.USER_LOOKUP.findPatientById(patientId);
             if (patient == null) {
                 return new Response("Patient not found", Status.NOT_FOUND);
             }
@@ -215,7 +214,7 @@ public class UserController {
             String username, String password, String passwordConfirmation, String specialtyDisplay,
             String licenceNumber, String assignedOffice) {
         try {
-            Doctor doctor = findDoctorById(doctorId);
+            Doctor doctor = ControllerRepositories.USER_LOOKUP.findDoctorById(doctorId);
             if (doctor == null) {
                 return new Response("Doctor not found", Status.NOT_FOUND);
             }
@@ -305,27 +304,8 @@ public class UserController {
         return null;
     }
 
-    private static Patient findPatientById(long patientId) {
-        Storage storage = Storage.getInstance();
-        User user = storage.findUserById(patientId);
-        if (user instanceof Patient) {
-            return (Patient) user;
-        }
-        return null;
-    }
-
-    private static Doctor findDoctorById(long doctorId) {
-        Storage storage = Storage.getInstance();
-        User user = storage.findUserById(doctorId);
-        if (user instanceof Doctor) {
-            return (Doctor) user;
-        }
-        return null;
-    }
-
     private static boolean isUsernameTakenByOther(String username, long excludeId) {
-        Storage storage = Storage.getInstance();
-        User existing = storage.findUserByUsername(username);
+        User existing = ControllerRepositories.USERS.findByUsername(username);
         if (existing == null) {
             return false;
         }
@@ -418,7 +398,7 @@ public class UserController {
         if (specialtyDisplay == null || specialtyDisplay.trim().isEmpty()) {
             return null;
         }
-        if ("Select one".equals(specialtyDisplay)) {
+        if (ComboOptionParser.isMissingSelection(specialtyDisplay)) {
             return null;
         }
         if ("General Medicine".equals(specialtyDisplay)) {
