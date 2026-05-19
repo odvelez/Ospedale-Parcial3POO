@@ -25,6 +25,8 @@ import core.models.entities.Prescription;
 import core.models.entities.User;
 import core.models.enums.AppointmentStatus;
 import core.models.enums.Specialty;
+import core.models.storage.ModelChangeNotifier;
+import core.models.storage.ModelChangeType;
 
 public class AppointmentController {
 
@@ -202,6 +204,7 @@ public class AppointmentController {
                 appointment.setObservations(observations.trim());
             }
 
+            notifyAppointmentUpdated();
             return new Response("Appointment canceled successfully", Status.OK);
         } catch (Exception ex) {
             return new Response("Unexpected error", Status.INTERNAL_SERVER_ERROR);
@@ -222,6 +225,7 @@ public class AppointmentController {
                 return new Response("Only requested appointments can be accepted", Status.BAD_REQUEST);
             }
             appointment.setStatus(AppointmentStatus.PENDING);
+            notifyAppointmentUpdated();
             return new Response("Appointment accepted successfully", Status.OK);
         } catch (Exception ex) {
             return new Response("Unexpected error", Status.INTERNAL_SERVER_ERROR);
@@ -255,6 +259,7 @@ public class AppointmentController {
                 appointment.setFollowUp(followUp.trim());
             }
             appointment.setStatus(AppointmentStatus.COMPLETED);
+            notifyAppointmentUpdated();
             return new Response("Appointment completed successfully", Status.OK);
         } catch (Exception ex) {
             return new Response("Unexpected error", Status.INTERNAL_SERVER_ERROR);
@@ -300,6 +305,7 @@ public class AppointmentController {
                 appointment.setReason(combined);
             }
 
+            notifyAppointmentUpdated();
             return new Response("Appointment rescheduled successfully", Status.OK);
         } catch (Exception ex) {
             return new Response("Unexpected error", Status.INTERNAL_SERVER_ERROR);
@@ -337,6 +343,7 @@ public class AppointmentController {
             new Prescription(appointment, medicationName.trim(), dose, administrationRoute.trim(),
                     treatmentDuration, additionalInstructions, frequency);
 
+            notifyAppointmentUpdated();
             return new Response("Medication prescribed successfully", Status.CREATED);
         } catch (Exception ex) {
             return new Response("Unexpected error", Status.INTERNAL_SERVER_ERROR);
@@ -693,5 +700,9 @@ public class AppointmentController {
             return "Internal Medicine";
         }
         return "";
+    }
+
+    private static void notifyAppointmentUpdated() {
+        ModelChangeNotifier.getInstance().notifyChange(ModelChangeType.APPOINTMENT_UPDATED);
     }
 }

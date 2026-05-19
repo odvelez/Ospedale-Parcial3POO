@@ -16,11 +16,15 @@ import core.models.entities.Doctor;
 import core.models.entities.Hospitalization;
 import core.models.entities.Patient;
 import core.models.entities.User;
+import core.models.storage.ModelChangeListener;
+import core.models.storage.ModelChangeNotifier;
+import core.models.storage.ModelChangeType;
 import core.models.storage.Storage;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -29,7 +33,7 @@ import javax.swing.table.DefaultTableModel;
  * @author lvillarreale
  * @author joeltrespalaciosp
  */
-public class NewJFrame111 extends javax.swing.JFrame {
+public class NewJFrame111 extends javax.swing.JFrame implements ModelChangeListener {
 
     private int x, y;
     private User user;
@@ -60,6 +64,7 @@ public class NewJFrame111 extends javax.swing.JFrame {
         rbDoctorAppointmentsTotal.setSelected(true);
         rbHospitalizationRequests.setSelected(true);
         refreshDoctorAppointmentsTable(false);
+        ModelChangeNotifier.getInstance().addListener(this);
     }
 
     /**
@@ -1182,6 +1187,7 @@ public class NewJFrame111 extends javax.swing.JFrame {
     }
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        unregisterModelListener();
         ViewUtils.performLogout(this);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
@@ -1190,6 +1196,7 @@ public class NewJFrame111 extends javax.swing.JFrame {
         ArrayList<Hospitalization> currentHospitalizations = Storage.getInstance().getHospitalizations();
         ArrayList<Appointment> currentAppointments = Storage.getInstance().getAppointments();
         NewJFrame11 admin = new NewJFrame11(user, currentUsers, currentHospitalizations, currentAppointments);
+        unregisterModelListener();
         this.setVisible(false);
         admin.setVisible(true);
     }//GEN-LAST:event_btnBackToAdminActionPerformed
@@ -1520,6 +1527,34 @@ public class NewJFrame111 extends javax.swing.JFrame {
         } else {
             combo.addItem("Select one");
         }
+    }
+
+    @Override
+    public void onModelChanged(final ModelChangeType type) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                refreshAfterModelChange(type);
+            }
+        });
+    }
+
+    private void refreshAfterModelChange(ModelChangeType type) {
+        if (type == ModelChangeType.APPOINTMENT_CREATED || type == ModelChangeType.APPOINTMENT_UPDATED) {
+            this.appointments = Storage.getInstance().getAppointments();
+            loadDoctorAppointmentCombos();
+            boolean pendingOnly = rbDoctorAppointmentsPending.isSelected();
+            refreshDoctorAppointmentsTable(pendingOnly);
+        }
+        if (type == ModelChangeType.HOSPITALIZATION_CREATED || type == ModelChangeType.HOSPITALIZATION_UPDATED) {
+            this.hospitalizations = Storage.getInstance().getHospitalizations();
+            loadDoctorHospitalizationCombos();
+            refreshDoctorHospitalizationTable();
+        }
+    }
+
+    private void unregisterModelListener() {
+        ModelChangeNotifier.getInstance().removeListener(this);
     }
 
     private long parsePatientIdFromCombo(String selection) {

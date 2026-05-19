@@ -34,9 +34,12 @@ Se reorganizó el código para no repetir lo mismo en varios controladores y par
 - Clases auxiliares para buscar pacientes/doctores y leer los combos.
 - Interfaces de “repositorio” para usuarios, citas y hospitalizaciones, con implementación sobre el almacén en memoria.
 
+## Bonificación Observer
+
+Se agregó un notificador de cambios del modelo para que las vistas de paciente y doctor actualicen sus tablas cuando se crean o modifican citas y hospitalizaciones.
+
 ## Por hacer (bonificación y detalles)
 
-- Actualizar las tablas solas cuando cambien citas u hospitalizaciones (patrón Observer).
 - Que el paciente pueda cancelar una hospitalización solicitada (si el enunciado lo exige en la revisión final).
 - Guardar cambios en JSON al cerrar (pendiente de confirmar con el curso).
 

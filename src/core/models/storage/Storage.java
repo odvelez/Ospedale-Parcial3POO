@@ -83,11 +83,13 @@ public class Storage {
 
     public boolean addAppointment(Appointment appointment) {
         appointments.add(appointment);
+        ModelChangeNotifier.getInstance().notifyChange(ModelChangeType.APPOINTMENT_CREATED);
         return true;
     }
 
     public boolean addHospitalization(Hospitalization hospitalization) {
         hospitalizations.add(hospitalization);
+        ModelChangeNotifier.getInstance().notifyChange(ModelChangeType.HOSPITALIZATION_CREATED);
         return true;
     }
 

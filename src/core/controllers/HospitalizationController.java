@@ -19,10 +19,11 @@ import core.models.entities.Appointment;
 import core.models.entities.Doctor;
 import core.models.entities.Hospitalization;
 import core.models.entities.Patient;
-import core.models.entities.User;
 import core.models.enums.AppointmentStatus;
 import core.models.enums.HospitalizationStatus;
 import core.models.enums.RoomType;
+import core.models.storage.ModelChangeNotifier;
+import core.models.storage.ModelChangeType;
 
 public class HospitalizationController {
 
@@ -108,6 +109,7 @@ public class HospitalizationController {
                 return new Response("Only requested hospitalizations can be approved", Status.BAD_REQUEST);
             }
             hospitalization.setStatus(HospitalizationStatus.ONGOING);
+            notifyHospitalizationUpdated();
             return new Response("Hospitalization approved successfully", Status.OK);
         } catch (Exception ex) {
             return new Response("Unexpected error", Status.INTERNAL_SERVER_ERROR);
@@ -131,6 +133,7 @@ public class HospitalizationController {
                 return new Response("Ongoing hospitalizations cannot be denied", Status.BAD_REQUEST);
             }
             hospitalization.setStatus(HospitalizationStatus.CANCELED);
+            notifyHospitalizationUpdated();
             return new Response("Hospitalization denied successfully", Status.OK);
         } catch (Exception ex) {
             return new Response("Unexpected error", Status.INTERNAL_SERVER_ERROR);
@@ -178,6 +181,7 @@ public class HospitalizationController {
             }
 
             appointment.setStatus(AppointmentStatus.COMPLETED);
+            ModelChangeNotifier.getInstance().notifyChange(ModelChangeType.APPOINTMENT_UPDATED);
 
             String hospitalizationId = IdGenerator.nextHospitalizationId(patient.getId());
             String observationsValue = "";
@@ -354,6 +358,10 @@ public class HospitalizationController {
         } catch (IllegalArgumentException ex) {
             return null;
         }
+    }
+
+    private static void notifyHospitalizationUpdated() {
+        ModelChangeNotifier.getInstance().notifyChange(ModelChangeType.HOSPITALIZATION_UPDATED);
     }
 
 }
