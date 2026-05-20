@@ -43,12 +43,6 @@ Se agregó un notificador de cambios del modelo para que las vistas de paciente 
 - Que el paciente pueda cancelar una hospitalización solicitada (si el enunciado lo exige en la revisión final).
 - Guardar cambios en JSON al cerrar (pendiente de confirmar con el curso).
 
-## Vistas Swing (NetBeans)
-
-No borres el comentario `WARNING: Do NOT modify` encima de `initComponents()` en los `.java` de `core.views`. Si lo quitas y abres el `.form` en el diseñador, NetBeans puede regenerar el `GroupLayout` y romper la pantalla (como pasó en admin con `sepAdminSide`).
-
-Para cambiar diseño: solo el editor visual de NetBeans, o editar el `.form` con cuidado. No uses scripts que limpien Javadoc en archivos generados.
-
 ## Ramas
 
 - Desarrollo: `test`
