@@ -311,11 +311,11 @@
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="lblPatientPhone" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="txtPatientEmail" min="-2" pref="109" max="-2" attributes="0"/>
+                                          <Component id="txtPatientPhone" min="-2" pref="109" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="lblPatientEmail" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="txtPatientPhone" min="-2" pref="109" max="-2" attributes="0"/>
+                                          <Component id="txtPatientEmail" min="-2" pref="109" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -346,11 +346,11 @@
                                   <Component id="lblPatientAddress" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtPatientAddress" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblPatientPhone" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtPatientEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtPatientPhone" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lblPatientEmail" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtPatientPhone" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtPatientEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace pref="73" max="32767" attributes="0"/>

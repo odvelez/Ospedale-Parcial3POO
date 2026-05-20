@@ -485,12 +485,15 @@ public class UserController {
             return false;
         }
         String trimmed = email.trim();
+        if (trimmed.contains(" ") || trimmed.indexOf('@') != trimmed.lastIndexOf('@')) {
+            return false;
+        }
         int atIndex = trimmed.indexOf('@');
         if (atIndex <= 0) {
             return false;
         }
         String local = trimmed.substring(0, atIndex);
-        String domain = trimmed.substring(atIndex + 1);
+        String domain = trimmed.substring(atIndex + 1).toLowerCase(java.util.Locale.ROOT);
         if (local.isEmpty() || domain.isEmpty()) {
             return false;
         }
