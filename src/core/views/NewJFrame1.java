@@ -217,7 +217,6 @@ public class NewJFrame1 extends javax.swing.JFrame implements ModelChangeListene
             .addComponent(lblAppTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        tblPatientAppointments.setAutoCreateRowSorter(true);
         tblPatientAppointments.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},

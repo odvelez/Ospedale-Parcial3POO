@@ -89,6 +89,24 @@ public class AppointmentController {
         }
     }
 
+    public static Response getDoctorIdComboOptions() {
+        try {
+            ArrayList<String> options = new ArrayList<>();
+            options.add("Select one");
+            for (User user : ControllerRepositories.USERS.getUsers()) {
+                if (user instanceof Doctor) {
+                    Doctor doctor = (Doctor) user;
+                    options.add(String.valueOf(doctor.getId()));
+                }
+            }
+            HashMap<String, Object> data = new HashMap<>();
+            data.put("options", options);
+            return new Response("Doctor id options loaded", Status.OK, data);
+        } catch (Exception ex) {
+            return new Response("Unexpected error", Status.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     public static Response listPatientNameComboOptions() {
         try {
             ArrayList<String> options = new ArrayList<>();
@@ -102,6 +120,24 @@ public class AppointmentController {
             HashMap<String, Object> data = new HashMap<>();
             data.put("options", options);
             return new Response("Patient options loaded", Status.OK, data);
+        } catch (Exception ex) {
+            return new Response("Unexpected error", Status.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public static Response listPatientIdComboOptions() {
+        try {
+            ArrayList<String> options = new ArrayList<>();
+            options.add("Select one");
+            for (User user : ControllerRepositories.USERS.getUsers()) {
+                if (user instanceof Patient) {
+                    Patient patient = (Patient) user;
+                    options.add(String.valueOf(patient.getId()));
+                }
+            }
+            HashMap<String, Object> data = new HashMap<>();
+            data.put("options", options);
+            return new Response("Patient id options loaded", Status.OK, data);
         } catch (Exception ex) {
             return new Response("Unexpected error", Status.INTERNAL_SERVER_ERROR);
         }

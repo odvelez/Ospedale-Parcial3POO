@@ -6,6 +6,7 @@ package core.views;
 
 import core.controllers.AppointmentController;
 import core.controllers.UserController;
+import core.controllers.support.ControllerRepositories;
 import core.controllers.utils.Response;
 import core.controllers.utils.Status;
 import core.controllers.utils.ViewUtils;
@@ -215,10 +216,10 @@ public class NewJFrame11 extends javax.swing.JFrame {
         cmbDoctorImpersonation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select one" }));
 
         lblDoctorImpersonation.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        lblDoctorImpersonation.setText("Doctor");
+        lblDoctorImpersonation.setText("Doctor ID");
 
         lblPatientImpersonation.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        lblPatientImpersonation.setText("Patient");
+        lblPatientImpersonation.setText("Patient ID");
 
         cmbPatientImpersonation.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         cmbPatientImpersonation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select one" }));
@@ -468,12 +469,13 @@ public class NewJFrame11 extends javax.swing.JFrame {
     }
 
     private void btnOpenDoctorViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenDoctorViewActionPerformed
-        String doctorName = (String) cmbDoctorImpersonation.getSelectedItem();
-        if (doctorName == null || "Select one".equals(doctorName)) {
-            ViewUtils.showResponseMessage(new Response("Select a valid doctor", Status.BAD_REQUEST));
+        String doctorSelection = (String) cmbDoctorImpersonation.getSelectedItem();
+        long doctorId = parseIdFromCombo(doctorSelection);
+        if (doctorId <= 0) {
+            ViewUtils.showResponseMessage(new Response("Select a valid doctor id", Status.BAD_REQUEST));
             return;
         }
-        Doctor selectedDoctor = findDoctorByName(doctorName);
+        Doctor selectedDoctor = ControllerRepositories.USER_LOOKUP.findDoctorById(doctorId);
         if (selectedDoctor == null) {
             ViewUtils.showResponseMessage(new Response("Doctor not found", Status.NOT_FOUND));
             return;
@@ -490,12 +492,13 @@ public class NewJFrame11 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnOpenPatientViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenPatientViewActionPerformed
-        String patientName = (String) cmbPatientImpersonation.getSelectedItem();
-        if (patientName == null || "Select one".equals(patientName)) {
-            ViewUtils.showResponseMessage(new Response("Select a valid patient", Status.BAD_REQUEST));
+        String patientSelection = (String) cmbPatientImpersonation.getSelectedItem();
+        long patientId = parseIdFromCombo(patientSelection);
+        if (patientId <= 0) {
+            ViewUtils.showResponseMessage(new Response("Select a valid patient id", Status.BAD_REQUEST));
             return;
         }
-        Patient selectedPatient = findPatientByName(patientName);
+        Patient selectedPatient = ControllerRepositories.USER_LOOKUP.findPatientById(patientId);
         if (selectedPatient == null) {
             ViewUtils.showResponseMessage(new Response("Patient not found", Status.NOT_FOUND));
             return;
@@ -508,8 +511,8 @@ public class NewJFrame11 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOpenPatientViewActionPerformed
 
     private void loadAdminImpersonationCombos() {
-        fillComboFromResponse(cmbDoctorImpersonation, AppointmentController.getDoctorNameComboOptions());
-        fillComboFromResponse(cmbPatientImpersonation, AppointmentController.listPatientNameComboOptions());
+        fillComboFromResponse(cmbDoctorImpersonation, AppointmentController.getDoctorIdComboOptions());
+        fillComboFromResponse(cmbPatientImpersonation, AppointmentController.listPatientIdComboOptions());
     }
 
     private void fillComboFromResponse(javax.swing.JComboBox<String> combo, Response response) {
@@ -549,33 +552,6 @@ public class NewJFrame11 extends javax.swing.JFrame {
             return -1;
         }
     }
-
-    private Doctor findDoctorByName(String fullName) {
-        for (User currentUser : Storage.getInstance().getUsers()) {
-            if (currentUser instanceof Doctor) {
-                Doctor doctor = (Doctor) currentUser;
-                String name = doctor.getFirstname() + " " + doctor.getLastname();
-                if (name.equals(fullName)) {
-                    return doctor;
-                }
-            }
-        }
-        return null;
-    }
-
-    private Patient findPatientByName(String fullName) {
-        for (User currentUser : Storage.getInstance().getUsers()) {
-            if (currentUser instanceof Patient) {
-                Patient patient = (Patient) currentUser;
-                String name = patient.getFirstname() + " " + patient.getLastname();
-                if (name.equals(fullName)) {
-                    return patient;
-                }
-            }
-        }
-        return null;
-    }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCloseWindow;
