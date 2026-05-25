@@ -1,49 +1,37 @@
 # Ospedale
 
-Parcial 3 — Programación Orientada a Objetos. Refactor del sistema hospitalario a arquitectura MVC con principios SOLID.
+Parcial 3 — POO. Sistema hospitalario en Java (Swing + MVC).
 
 ## Integrantes
 
-| Nombre completo   | NRC  |
-|-------------------|------|
-| Luis Villarreal   | 2040 |
-| Joel Trespalacios | 2040 |
-| Oscar Velez       | 2040 |
+- Luis Villarreal — NRC 2040
+- Joel Trespalacios — NRC 2040
+- Oscar Velez — NRC 2040
 
-## Ejecución
+## Cómo ejecutar
 
-En NetBeans: ejecutar `main.Main`. Al abrir la app se cargan los usuarios de `json/users.json` y aparece la pantalla de login.
+1. Abrir el proyecto en **NetBeans**.
+2. **Clean and Build**.
+3. Ejecutar la clase `main.Main`.
 
-## Qué hace la aplicación
+Al iniciar se cargan los usuarios de `json/users.json` y aparece el login.
 
-- **Inicio de sesión** según rol: administrador, paciente o doctor. Cerrar sesión vuelve al login.
-- **Administrador:** registrar doctores; entrar a la vista de un paciente o de un doctor (impersonar) y volver con el botón Back.
-- **Paciente:** ver y editar perfil; pedir citas y hospitalizaciones; ver listas; cancelar citas.
-- **Doctor:** ver perfil; aceptar, completar, reagendar citas; prescribir; aprobar o rechazar hospitalizaciones; hospitalizar desde una cita pendiente.
-- Los mensajes de éxito o error salen en ventanas emergentes. Tras una operación exitosa se limpian los campos que corresponda.
+## Roles
+
+- **Admin:** registra doctores y puede ver la app como paciente o doctor (botón Back para volver).
+- **Paciente:** perfil, citas y hospitalizaciones.
+- **Doctor:** perfil, citas (aceptar, reagendar, completar), prescripciones y hospitalizaciones.
 
 ## Datos
 
-- Al arrancar se leen los usuarios del JSON.
-- Citas y hospitalizaciones nuevas quedan **solo en memoria** hasta cerrar la app (no se reescribe el archivo JSON).
+- Usuarios: vienen del JSON al arrancar.
+- Citas y hospitalizaciones nuevas: solo en memoria (no se guardan en el JSON al cerrar).
 
-## Bonificación SOLID (controladores)
+## Rama de entrega
 
-Se reorganizó el código para no repetir lo mismo en varios controladores y para no acceder al almacén directamente desde todos lados:
+`main`
 
-- Clases auxiliares para buscar pacientes/doctores y leer los combos.
-- Interfaces de “repositorio” para usuarios, citas y hospitalizaciones, con implementación sobre el almacén en memoria.
 
-## Bonificación Observer
+## Rama de trabajo
 
-Se agregó un notificador de cambios del modelo para que las vistas de paciente y doctor actualicen sus tablas cuando se crean o modifican citas y hospitalizaciones.
-
-## Por hacer (bonificación y detalles)
-
-- Que el paciente pueda cancelar una hospitalización solicitada (si el enunciado lo exige en la revisión final).
-- Guardar cambios en JSON al cerrar (pendiente de confirmar con el curso).
-
-## Ramas
-
-- Desarrollo: `test`
-- Entrega: `main`
+`test`
