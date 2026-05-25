@@ -61,6 +61,13 @@ public class NewJFrame1 extends javax.swing.JFrame implements ModelChangeListene
         loadHospitalizationCombos();
         refreshAppointmentTable();
         ModelChangeNotifier.getInstance().addListener(this);
+        tabPatientMain.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                if (tabPatientMain.getSelectedIndex() == 0) {
+                    refreshAppointmentTable();
+                }
+            }
+        });
     }
 
     /**
@@ -320,10 +327,10 @@ public class NewJFrame1 extends javax.swing.JFrame implements ModelChangeListene
         txtPatientEmergencyPhone.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
 
         lblPatientPhone.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        lblPatientPhone.setText("Password");
+        lblPatientPhone.setText("Emergency phone");
 
         lblPatientAddress.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        lblPatientAddress.setText("Password confirmation");
+        lblPatientAddress.setText("Emergency contact");
 
         txtPatientEmergencyContact.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
 
@@ -513,12 +520,12 @@ public class NewJFrame1 extends javax.swing.JFrame implements ModelChangeListene
 
         lblAppointmentType.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         lblAppointmentType.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAppointmentType.setText("Estimated date of admission");
+        lblAppointmentType.setText("Admission date");
         lblAppointmentType.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         lblAppointmentDate.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         lblAppointmentDate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAppointmentDate.setText("Desired room type");
+        lblAppointmentDate.setText("Room type");
 
         cmbHospitalizationRoomType.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         cmbHospitalizationRoomType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select one" }));
@@ -811,19 +818,23 @@ public class NewJFrame1 extends javax.swing.JFrame implements ModelChangeListene
 
     private void btnSavePatientProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSavePatientProfileActionPerformed
         String gender = (String) cmbPatientGender.getSelectedItem();
+        String currentPassword = patient.getPassword();
         Response response = UserController.updatePatient(
                 patient.getId(),
                 txtPatientFirstname.getText(),
                 txtPatientLastname.getText(),
                 txtPatientUsername.getText(),
-                txtPatientEmergencyPhone.getText(),
-                txtPatientEmergencyContact.getText(),
+                currentPassword,
+                currentPassword,
                 txtPatientEmail.getText(),
                 txtPatientBirthdate.getText(),
                 txtPatientPhone.getText(),
                 txtPatientAddress.getText(),
                 gender);
         ViewUtils.showResponseMessage(response);
+        if (response.getStatus() == Status.OK) {
+            loadPatientProfile();
+        }
     }//GEN-LAST:event_btnSavePatientProfileActionPerformed
 
     private void loadPatientProfile() {
@@ -913,17 +924,6 @@ public class NewJFrame1 extends javax.swing.JFrame implements ModelChangeListene
         };
     }
 
-    private DefaultTableModel createPatientHospitalizationTableModel() {
-        return new DefaultTableModel(
-                new Object[0][0],
-                new String[]{"ID", "Date", "Doctor", "Room", "Status", "Reason"}) {
-            @Override
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return false;
-            }
-        };
-    }
-
     private void populateTableFromRows(DefaultTableModel model, List<?> rows, String[] columnKeys) {
         model.setRowCount(0);
         for (Object rowObject : rows) {
@@ -950,21 +950,6 @@ public class NewJFrame1 extends javax.swing.JFrame implements ModelChangeListene
         List<?> rows = (List<?>) rowsObject;
         DefaultTableModel model = createPatientAppointmentTableModel();
         populateTableFromRows(model, rows, new String[]{"id", "date", "doctor", "specialty", "type", "status"});
-        tblPatientAppointments.setModel(model);
-    }
-
-    private void refreshPatientHospitalizationTable() {
-        Response response = HospitalizationController.listPatientHospitalizations(patient.getId());
-        if (response.getStatus() != Status.OK || response.getData() == null) {
-            return;
-        }
-        Object rowsObject = response.getData().get("rows");
-        if (!(rowsObject instanceof List)) {
-            return;
-        }
-        List<?> rows = (List<?>) rowsObject;
-        DefaultTableModel model = createPatientHospitalizationTableModel();
-        populateTableFromRows(model, rows, new String[]{"id", "date", "doctor", "roomType", "status", "reason"});
         tblPatientAppointments.setModel(model);
     }
 
@@ -1016,8 +1001,7 @@ public class NewJFrame1 extends javax.swing.JFrame implements ModelChangeListene
         if (response.getStatus() == Status.CREATED) {
             clearHospitalizationRequestFields();
             this.hospitalizations = Storage.getInstance().getHospitalizations();
-            refreshPatientHospitalizationTable();
-            tabPatientMain.setSelectedIndex(0);
+            loadHospitalizationCombos();
         }
     }//GEN-LAST:event_btnRequestHospitalizationActionPerformed
 
@@ -1053,7 +1037,9 @@ public class NewJFrame1 extends javax.swing.JFrame implements ModelChangeListene
         if (type == ModelChangeType.HOSPITALIZATION_CREATED || type == ModelChangeType.HOSPITALIZATION_UPDATED) {
             this.hospitalizations = Storage.getInstance().getHospitalizations();
             loadHospitalizationCombos();
-            refreshPatientHospitalizationTable();
+            if (tabPatientMain.getSelectedIndex() == 0) {
+                refreshAppointmentTable();
+            }
         }
     }
 
